@@ -4,7 +4,7 @@
       "id": 1,
       "name": "John P. Robarts Research Library, Floor 14",
       "brief_description": "After a long elevator ride, you arrive on the 14th floor of Robarts. The floor is filled with students cramming for their midterms, and there is not even one single seat available.",
-      "long_description": "After a long journey, you finally reach the 14th floor. When you open the door, the overwhelming sound of silence hits you. It is perfectly silent, not even one person talking. Every seat is taken, and everyone is working on their tablets and laptops, clearly studying for their midterms. You gaze outside and you see the whole of the UofT campus, you know all your items are out there, ready for you to find. You walk around on your tiptoes, as to not make even a single sound. As you walk around, you see many outlets both on the tables, as well as on the walls, where many students are charging their devices to keep their grind going.",
+      "long_description": "After a long journey, you finally reach the 14th floor. When you open the door, the overwhelming sound of silence hits you. It is perfectly silent, not even one person talking. Every seat is taken, and everyone is working on their tablets and laptops, clearly studying for their midterms. You gaze outside and you see the whole of the UofT campus, you know all your items are out there, ready for you to find. You walk around on your tiptoes, so as to not make even a single sound. As you walk around, you see many outlets both on the tables, as well as on the walls, where many students are charging their devices to keep their grind going.",
       "available_commands": {
         "go south": 4,
         "go east": 2,
@@ -16,7 +16,7 @@
       "id": 2,
       "name": "St. George Subway Station",
       "brief_description": "You enter St. George Subway Subway Station, and arrive on the Line 1 platform. The northbound subway car just left, but you see the southbound subway car arriving now, with its doors opening. You could get on, should you have access to it.",
-      "long_description": "You arrive at the St. George Subway Station. You enter from the St. George street entrance, and arrive on the Line 1 platform. You see lots of people getting off the subway car, some heading up the stairs, some heading down the stairs onto the Line 2 platform. The floors are surprisingly clean, and you smell a strong scent of lavender. 'How delicious', you think to yourself. You see the Southbound subway car arrive on the platform, and its doors are open. You could get on, should you have access to use it.",
+      "long_description": "You arrive at the St. George Subway Station. You enter from the St. George Street entrance and arrive on the Line 1 platform. You see lots of people getting off the subway car, some heading up the stairs, some heading down the stairs onto the Line 2 platform. The floors are surprisingly clean, and you smell a strong scent of lavender. 'How delicious', you think to yourself. You see the Southbound subway car arrive on the platform, and its doors are open. You could get on, should you have access to use it.",
       "available_commands": {
         "go south": 5,
         "go west": 1,
@@ -29,8 +29,8 @@
     {
       "id": 3,
       "name": "Royal Ontario Museum",
-      "brief_description": "You enter the ROM and stumble into a room full of lasers. Clearly, you shouldn't be here. In the middle, there is a podium with a large shiny crystal looking object. It resonates with you.",
-      "long_description": "You completely forget about your project due today. You stumble around the ROM for what feels like hours, and then it hits you. I need to find my stuff! You check your phone, but it turns out only 5 minutes has passed. 'Jeez, is this what being outside feels like?', you think to yourself. You keep looking around and eventually find a closed exhibit with a 'DO NOT ENTER' sign. Obviously, you enter, and you find a large room filled head to toe with bright red lasers which will likely sound the alarm should you touch one. In the middle of the room, a podium with a glowing stone. Its inscription says 'The Ancient Computer Scientist Stone'. Surrounding this podium, there are 6 more, each with its own artifact in it. They all have inscriptions.",
+      "brief_description": "You enter the ROM and stumble into a room full of lasers. Clearly, you shouldn't be here. In the middle, there is a podium with a large shiny crystal-looking object. It resonates with you.",
+      "long_description": "You completely forget about your project due today. You stumble around the ROM for what feels like hours, and then it hits you. I need to find my stuff! You check your phone, but it turns out that only 5 minutes have passed. 'Jeez, is this what being outside feels like?', you think to yourself. You keep looking around and eventually find a closed exhibit with a 'DO NOT ENTER' sign. Obviously, you enter, and you find a large room filled head to toe with bright red lasers which will likely sound the alarm should you touch one. In the middle of the room, a podium with a glowing stone. Its inscription says 'The Ancient Computer Scientist Stone'. Surrounding this podium, there are 6 more, each with its own artifact in it. They all have inscriptions.",
       "available_commands": {
         "go south": 6,
         "go west": 2,
@@ -69,7 +69,7 @@
     {
       "id": 6,
       "name": "Queens Park",
-      "brief_description": "You enter Queens Park, a large park right in the heart of UofT. You are in the northern section, and can see the Legislative Building in the distance. Many people are walking around, making the snowy paths dirty, which have now caused your shoes to be soggy. You have now have soggy shoes, and they will get more soggy should you try and leave the park.",
+      "brief_description": "You enter Queens Park, a large park right in the heart of UofT. You are in the northern section and can see the Legislative Building in the distance. Many people are walking around, making the snowy paths dirty, which have now caused your shoes to be soggy. You have now have soggy shoes, and they will get more soggy should you try and leave the park.",
       "long_description": "You enter Queens Park, a large park right in the heart of UofT. You find yourself right in the northern park next to the fountain. In the distance, you can see the Legislative Building, and many cars driving around the park. You see various paths leading off to different areas, such as the main campus, and Victoria College. There are many students walking around, some running even, perhaps they are late for class. As you walk through the park, your shoes start getting soggy from all the snow on the path, now turned into slush from all the dirt. Should you wish to leave, the park, you will have to exit through the slush as well. No matter what you do, your shoes will be wet from now on.",
       "available_commands": {
         "go north": 3,
@@ -121,7 +121,7 @@
     {
       "id": 1,
       "name": "USB",
-      "description": "The USB which all your Project 1 files are backed up on. Like any good Computer Science student, you would never have a backup on your cloud, so you need this USB in order to submit your project. Its a 1 terrabyte USB, so its pretty dang large... not exactly sure how you forgot it somewhere.",
+      "description": "The USB which all your Project 1 files are backed up on. Like any good Computer Science student, you would never have a backup on your cloud, so you need this USB to submit your project. It's a 1 terabyte USB, so it's pretty dang large... not exactly sure how you forgot it somewhere.",
       "status": False,
       "start_position": 7,
       "target_position": None
