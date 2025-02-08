@@ -167,7 +167,7 @@
     {
       "id": 1,
       "name": "ROM Podiums",
-      "description": "",
+      "description": "As you stand in the room, you feel its aura. It feels as though there is an otherworldly being in the room with you, speaking through the walls. It whispers to you, and although you don't hear it as sound, you somehow can understand the message... 'It's me, John Computer Science... if you wish to acquire the Ancient Computer Scienctist Stone, you must prove yourself worthy. To obtain thee, answer these riddles... six. Each riddle will be about Computer Science, and will be a one word answer. If you can answer all six riddles, and defeat the final main riddle after, you can have the stone. Warning, I have seen many try, and all fail, so good luck to you.",
       "available_commands": {
         "inspect artifact 1":  "",
         "solve artifact 1 riddle":  "",
