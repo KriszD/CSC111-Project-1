@@ -205,8 +205,8 @@
       "name": "Blackjack",
       "description": "You notice that among the items being gambled on the tables, your Lucky Mug is one of the items in the middle. 'Hey, that's my Lucky Mug!', you say. The gamblers turn and look at you, and slowly hide their cards. 'Ever heard of finders keepers?, says one of the gamblers. 'You left your mug here that one time you bought coffee and asked the shop owners to fill it up, but then you ran away because you forgot you had a test next period. As shopowners do, they gave it to us to gamble with. If you want your mug back, you are gonna have to beat me in a game of blacjack.'",
       "available_commands": {
-        "hit":  "",
-        "stand":  ""
+        "hit":  "Hit! You receive a ",
+        "stand":  "You stand on  "
       },
       "win_message": "",
       "lose_message": ""
