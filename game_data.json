@@ -220,8 +220,8 @@
         "hand":  "",
         "envelope side":  ""
       },
-      "win_message": "",
-      "lose_message": ""
+      "win_message": "'Congratulations, you have won this game. By the power vested in me, by Metrolinx, you may now utilize the subways running between St. George and Queens Park Station.'",
+      "lose_message": "'It's quite the difficult game, isn't it? The ability to travel between stations is a great asset, however, as they say, you should not spend all your money in one place... which in this case your money is your turn count...'"
     }
   ]
 }
