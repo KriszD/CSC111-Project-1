@@ -208,8 +208,8 @@
         "hit":  "Hit! You receive a ",
         "stand":  "You stand on  "
       },
-      "win_message": "",
-      "lose_message": ""
+      "win_message": "Alright, you won fair and square. You can have your mug back.",
+      "lose_message": "'Well, look's like you lose. Nice try though, I'll make sure to put this mug to good use... unless you want a rematch, that is?'"
     },
     {
       "id": 4,
