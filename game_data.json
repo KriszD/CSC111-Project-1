@@ -216,9 +216,9 @@
       "name": "Ddakji",
       "description": "As the people who just arrived fan out, you realize you are completely alone in the subway station, there are no longer any people here. Except, there is one person, a man with a briefcase sitting on a bench. He looks at you and greets you. 'Hello, would you like to play a game?', he asks. He sees you are hesistant, and says, 'You know you this is just a game right? Like, you are in a text adventure game, this isn't a horror movie. You don't need to be scared. Anyways, if you beat me in this game, you will unlock the ability to travel between St. George station, and Queens Park station as you please, at the cost of only 1 turn. The game is simple, its Ddakji, the Korean game where you try and flip over your opponents envelope by throwing your own envelope at it. Heres your envelope, try and flip mine over. Adjust your settings before you actually throw it, otherwise this might not go so well for you.'",
       "available_commands": {
-        "power":  "",
-        "hand":  "",
-        "envelope side":  ""
+        "power":  "You adjust your level of power to ",
+        "hand":  "You switch your hand to ",
+        "envelope side":  "You change the side of the envelope you are holding down to "
       },
       "win_message": "'Congratulations, you have won this game. By the power vested in me, by Metrolinx, you may now utilize the subways running between St. George and Queens Park Station.'",
       "lose_message": "'It's quite the difficult game, isn't it? The ability to travel between stations is a great asset, however, as they say, you should not spend all your money in one place... which in this case your money is your turn count...'"
