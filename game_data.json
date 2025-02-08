@@ -197,13 +197,13 @@
         "bag": "Your bag is empty.",
         "run": "Nice try pal."
       },
-      "win_message": "'Yes! Thank you so much. Heres your money, spend it wisely Pokemon Trainer.' You walk to the vending machine, and punch in the code G4, and out comes your G Fuel. You now have G Fuel!",
+      "win_message": "'Yes! Thank you so much. Here's your money, spend it wisely Pokemon Trainer.' You walk to the vending machine, punch in the code G4, and out comes your G Fuel. You now have G Fuel!",
       "lose_message": "'NO! Please, you've got to try again. Here, let me get back to the same position.'"
     },
     {
       "id": 3,
       "name": "Blackjack",
-      "description": "You notice that among the items being gambled on the tables, your Lucky Mug is one of the items in the middle. 'Hey, thats my Lucky Mug!', you say. The gamblers turn and look at you, and slowly hide their cards. 'Ever heard of finders keepers?, says one of the gamblers. 'You left your mug here that one time you bought coffee and asked the shop owners to fill it up, but then you ran away because you forgot you had a test next period. As shopowners do, they gave it to us to gamble with. If you want your mug back, you are gonna have to beat me in a game of blacjack.'",
+      "description": "You notice that among the items being gambled on the tables, your Lucky Mug is one of the items in the middle. 'Hey, that's my Lucky Mug!', you say. The gamblers turn and look at you, and slowly hide their cards. 'Ever heard of finders keepers?, says one of the gamblers. 'You left your mug here that one time you bought coffee and asked the shop owners to fill it up, but then you ran away because you forgot you had a test next period. As shopowners do, they gave it to us to gamble with. If you want your mug back, you are gonna have to beat me in a game of blacjack.'",
       "available_commands": {
         "hit":  "",
         "stand":  ""
