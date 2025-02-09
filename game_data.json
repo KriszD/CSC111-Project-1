@@ -182,8 +182,8 @@
         "inspect artifact 6":  "",
         "solve artifact 6 riddle":  ""
       },
-      "win_message": "",
-      "lose_message": ""
+      "win_message": "That is correct. You continue to prove you are worthy of the stone.",
+      "lose_message": "Unfortunately, that is an incorrect answer. It seems the stone does not speak to you."
     },
     {
       "id": 2,
