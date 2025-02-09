@@ -166,7 +166,7 @@ if __name__ == "__main__":
             elif choice == 'look':
                 print(location.long_description)
             elif choice == 'inventory':
-                print([item.name for item in player.items])
+                print([player.items[item].name for item in player.items])
                 player.inventory()  # Allows the player to interact with their inventory
             elif choice == 'turns':
                 print(player.remaining_turns)
@@ -183,15 +183,17 @@ if __name__ == "__main__":
 
             if choice in other_commands:
                 if choice == 'charge laptop':
-                    pass
+                    player.items[2].won = True
                 elif choice == 'take subway':
                     pass
-                elif choice == 'charge laptop':
-                    pass
+                elif choice == 'return stone':
+                    player.items.pop(5)
+                    layer.items[5].won = True
                 elif choice == 'pickup usb':
-                    pass
+                    player.items[game._items[0].id] = game._items[0]
+                    player.items[1].won = True
                 elif choice == 'pickup laptop charger':
-                    pass
+                    player.items[game._items[1].id] = game._items[1]
 
             if choice in puzzle_commands:
                 if choice == 'investigate podiums':

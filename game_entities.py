@@ -72,8 +72,8 @@ class Location:
         """Update available commands based on conditions."""
 
         def has_item(item_id: int) -> bool:
-            """Check if player has a specific item."""
-            return any(item.id == item_id for item in player.items)
+            """Check if player has a specific item by its ID."""
+            return item_id in player.items  # Check if the item_id exists as a key in the dictionary
 
         def add_command(command: str, value: int) -> None:
             """Add a command if not already present."""
@@ -88,21 +88,18 @@ class Location:
             1: lambda: add_command("charge laptop", 1) if has_item(2) else remove_command("charge laptop"),
             2: lambda: (
                 add_command("take subway", 9) if puzzles[4].won else remove_command("take subway"),
-                remove_command("play ddakji") if puzzles[4].won else None
-            ),
+                remove_command("play ddakji") if puzzles[4].won else None),
             3: lambda: remove_command("investigate podiums") if puzzles[1].won else None,
             4: lambda: (
                 add_command("return stone", 4) if has_item(5) else remove_command("return stone"),
-                remove_command("pokemon battle") if puzzles[2].won else None
-            ),
+                remove_command("pokemon battle") if puzzles[2].won else None),
             5: lambda: remove_command("play blackjack") if puzzles[3].won else None,
-            7: lambda: remove_command("pickup usb") if has_item(1) else None,
-            8: lambda: add_command("pickup laptop charger", 8) if has_item(2) else remove_command(
-                "pickup laptop charger"),
+            7: lambda: remove_command("pickup usb") if has_item(1) else add_command("pickup usb", 7),
+            8: lambda: remove_command("pickup laptop charger") if has_item(2) else add_command("pickup laptop charger",
+                                                                                               8),
             9: lambda: (
                 add_command("take subway", 2) if puzzles[4].won else remove_command("take subway"),
-                remove_command("play ddakji") if puzzles[4].won else None
-            ),
+                remove_command("play ddakji") if puzzles[4].won else None),
         }
 
         # Execute the corresponding condition for the current location
@@ -199,8 +196,49 @@ class Puzzle:
         self.won = False
 
     def rom_podiums(self, game: AdventureGame, player: Player) -> None:
-        """Initializes and plays through the Rom Podiums Puzzle.
-        """
+        """Initializes and plays through the Rom Podiums Puzzle."""
+        print(self.description)
+        win_count = 0  # Track the number of solved riddles
+
+        while not self.won:
+            print("Your options are:")
+            for action in self.available_commands:
+                print("-", action)
+
+            choice = input("\nEnter action: ").lower().strip()
+
+            while choice not in self.available_commands:
+                print("That was an invalid option; try again.")
+                choice = input("\nEnter action: ").lower().strip()
+
+            # Handle the actions based on available commands
+            for command, riddle in list(self.available_commands.items()):
+                if "inspect artifact" in command and choice == command:
+                    print(f"Inspecting Artifact: {riddle}")
+
+                elif "solve artifact" in command and choice == command:
+                    answer = input(f"Enter answer for {command}: ").lower().strip()
+
+                    # Check if the answer is correct
+                    artifact_number = command.split()[2]  # Extract the artifact number (1, 2, 3, etc.)
+                    correct_answer = self.available_commands[f"solve artifact {artifact_number} riddle"]
+                    if answer == correct_answer:
+                        print(self.win_message)
+                        win_count += 1
+                        self.available_commands.pop(command, None)  # Remove the command after solving
+                    else:
+                        print(self.lose_message)
+
+            # Check win condition (all riddles solved)
+            if win_count == 6:  # Completing all 6 necessary riddles
+                print(self.available_commands["inspect main artifact"])
+                answer = input("Enter answer for the main artifact riddle: ").lower().strip()
+                if answer == self.available_commands["solve main artifact riddle"]:
+                    print("'That is... correct! You may now have the Ancient Computer Scientist Stone, you are worthy.'")
+                    player.items[game._items[4].id] = game._items[4]
+                    self.won = True
+                else:
+                    print(self.lose_message)
 
     def pokemon_battle(self, game: AdventureGame, player: Player) -> None:
         """Initializes and plays through the Pokemon Battle Puzzle.
@@ -234,14 +272,11 @@ class Puzzle:
             elif choice == "run":
                 print(self.available_commands["run"])
 
-            if self.won:
-                print(self.win_message)
-                for item in game._items:
-                    if item.id == 4:
-                        player.items.append(item)
-
-            else:
+            if not self.won:
                 print(self.lose_message)
+
+        print(self.win_message)
+        player.items[game._items[3].id] = game._items[3]
 
     def blackjack(self, game: AdventureGame, player: Player) -> None:
         """Initializes and plays through the Blackjack Puzzle.
@@ -269,7 +304,7 @@ class Player:
     """
 
     name: str
-    items: list[Item]
+    items: dict[int: Item]
     remaining_turns: int
 
     def __init__(self, name) -> None:
@@ -279,7 +314,7 @@ class Player:
         """
 
         self.name = name
-        self.items = []
+        self.items = {}
         self.remaining_turns = 50
 
     def inventory(self) -> None:
