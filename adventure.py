@@ -71,7 +71,7 @@ class AdventureGame:
         dictionary of locations mapping each game location's ID to a Location object, (2) a list of all Item objects,
         and (3) a dictionary of puzzles mapping each game puzzle's ID to a Puzzle object"""
 
-        with open(filename, 'r') as f:
+        with open(filename, 'r', encoding='utf-8') as f:
             data = json.load(f)  # This loads all the data from the JSON file
 
         locations = {}
@@ -105,7 +105,6 @@ class AdventureGame:
         else:
             return self._locations[loc_id]
 
-    @staticmethod
     def win_condition(self) -> None:
         """Returns whether the user has achieved all the objectives needed to win the game.
         """
@@ -144,6 +143,7 @@ if __name__ == "__main__":
 
         if not location.visited:
             print(location.long_description)
+            location.visited = True
         else:
             print(location.brief_description)
 
@@ -166,7 +166,7 @@ if __name__ == "__main__":
             elif choice == 'look':
                 print(location.long_description)
             elif choice == 'inventory':
-                print(player.items)
+                print([item.name for item in player.items])
                 player.inventory()  # Allows the player to interact with their inventory
             elif choice == 'turns':
                 print(player.remaining_turns)

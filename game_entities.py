@@ -22,7 +22,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional
 
-from assignments.project1.adventure import AdventureGame
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from assignments.project1.adventure import AdventureGame
 
 
 @dataclass
@@ -67,66 +69,45 @@ class Location:
         self.visited = visited
 
     def conditions(self, player: Player, puzzles: dict[int, Puzzle]) -> None:
-        """
-        """
+        """Update available commands based on conditions."""
 
-        if self.id == 1:  # Robarts 14th Floor Location
-            for item in player.items:
-                if item.id == 2:
-                    if 'charge laptop' not in self.available_commands:
-                        self.available_commands['charge laptop'] = 1
-                    return
-                self.available_commands.pop('charge laptop')
+        def has_item(item_id: int) -> bool:
+            """Check if player has a specific item."""
+            return any(item.id == item_id for item in player.items)
 
-        elif self.id == 2:  # St. George Subway Location
-            if puzzles[4].won and 'take subway' not in self.available_commands:
-                self.available_commands['take subway'] = 9
-            elif 'take subway' in self.available_commands:
-                self.available_commands.pop('take subway')
-            if puzzles[4].won and 'play ddakji' in self.available_commands:
-                self.available_commands.pop('play ddakji')
+        def add_command(command: str, value: int) -> None:
+            """Add a command if not already present."""
+            if command not in self.available_commands:
+                self.available_commands[command] = value
 
-        elif self.id == 3:  # ROM Location
-            if puzzles[1].won and 'investigate podiums' in self.available_commands:
-                self.available_commands.pop('investigate podiums')
+        def remove_command(command: str) -> None:
+            """Remove a command if present."""
+            self.available_commands.pop(command, None)
 
-        elif self.id == 4:  # CSSU Lounge Location
-            for item in player.items:
-                if item.id == 5:
-                    if 'return stone' not in self.available_commands:
-                        self.available_commands['return stone'] = 4
-                    return
-                self.available_commands.pop('return stone')
-            if puzzles[2].won and 'pokemon battle' in self.available_commands:
-                self.available_commands.pop('pokemon battle')
+        location_conditions = {
+            1: lambda: add_command("charge laptop", 1) if has_item(2) else remove_command("charge laptop"),
+            2: lambda: (
+                add_command("take subway", 9) if puzzles[4].won else remove_command("take subway"),
+                remove_command("play ddakji") if puzzles[4].won else None
+            ),
+            3: lambda: remove_command("investigate podiums") if puzzles[1].won else None,
+            4: lambda: (
+                add_command("return stone", 4) if has_item(5) else remove_command("return stone"),
+                remove_command("pokemon battle") if puzzles[2].won else None
+            ),
+            5: lambda: remove_command("play blackjack") if puzzles[3].won else None,
+            7: lambda: remove_command("pickup usb") if has_item(1) else None,
+            8: lambda: add_command("pickup laptop charger", 8) if has_item(2) else remove_command(
+                "pickup laptop charger"),
+            9: lambda: (
+                add_command("take subway", 2) if puzzles[4].won else remove_command("take subway"),
+                remove_command("play ddakji") if puzzles[4].won else None
+            ),
+        }
 
-        elif self.id == 5:  # Coffee Stand Location
-            if puzzles[3].won and 'play blackjack' in self.available_commands:
-                self.available_commands.pop('play blackjack')
-
-        elif self.id == 7:  # Campus One Location
-            for item in player.items:
-                if item.id == 1:
-                    if 'pickup usb' not in self.available_commands:
-                        self.available_commands.pop('pickup usb')
-                    return
-                self.available_commands.pop('pickup usb')
-
-        elif self.id == 8:  # Health Sci Building Location
-            for item in player.items:
-                if item.id == 2:
-                    if 'pickup laptop charger' not in self.available_commands:
-                        self.available_commands['pickup laptop charger'] = 8
-                    return
-                self.available_commands.pop('pickup laptop charger')
-
-        elif self.id == 9:  # Queens Park Subway Location
-            if puzzles[4].won and 'take subway' not in self.available_commands:
-                self.available_commands['take subway'] = 2
-            elif 'take subway' in self.available_commands:
-                self.available_commands.pop('take subway')
-            if puzzles[4].won and 'play ddakji' in self.available_commands:
-                self.available_commands.pop('play ddakji')
+        # Execute the corresponding condition for the current location
+        if self.id in location_conditions:
+            location_conditions[self.id]()
 
 
 @dataclass
@@ -202,19 +183,20 @@ class Puzzle:
     lose_message: str
     won: bool
 
-    def __init__(self, puzzle_id, description, available_commands,
-                 win_message, lose_message, won=False) -> None:
+    def __init__(self, puzzle_id, name, description, available_commands,
+                 win_message, lose_message) -> None:
         """Initialize a new puzzle.
 
         # TODO Add more details here about the initialization if needed
         """
 
         self.id = puzzle_id
+        self.name = name
         self.description = description
         self.available_commands = available_commands
         self.win_message = win_message
         self.lose_message = lose_message
-        self.won = won
+        self.won = False
 
     def rom_podiums(self, game: AdventureGame, player: Player) -> None:
         """Initializes and plays through the Rom Podiums Puzzle.
@@ -290,15 +272,15 @@ class Player:
     items: list[Item]
     remaining_turns: int
 
-    def __init__(self, name, items=None, remaining_turns=50) -> None:
+    def __init__(self, name) -> None:
         """Initialize a new player.
 
         # TODO Add more details here about the initialization if needed
         """
 
         self.name = name
-        self.items = items
-        self.remaining_turns = remaining_turns
+        self.items = []
+        self.remaining_turns = 50
 
     def inventory(self) -> None:
         """Allow the user to interact with their inventory

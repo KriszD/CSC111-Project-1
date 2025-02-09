@@ -122,45 +122,46 @@
       "id": 1,
       "name": "USB",
       "description": "The USB which all your Project 1 files are backed up on. Like any good Computer Science student, you would never have a backup on your cloud, so you need this USB to submit your project. It's a 1 terabyte USB, so it's pretty dang large... not exactly sure how you forgot it somewhere.",
-      "status": False,
+      "status": false,
       "start_position": 7,
-      "target_position": None
+      "target_position": null,
+      "combination": null
     },
     {
       "id": 2,
       "name": "Laptop Charger",
       "description": "Your trusty old Laptop Charger thats been powering your laptop for years. You always plug it into the wall during your lectures to create a mini-limbo in the aisles of the lecture seats, so its quite surprising you forgot it somewhere. Your laptop died this morning before you took a nap, so it needs to be charged in order to finally submit your Project 1.",
-      "status": False,
+      "status": false,
       "start_position": 8,
       "target_position": 1,
-      "combination": None
+      "combination": null
     },
     {
       "id": 3,
       "name": "Lucky Mug",
       "description": "The mug your parents gave you as you moved in to your dorm for your first year of university. On it, it says 'Good luck, you're going to crush it! (But call your parents, okay?)'. You've been using this mug throughout the whole school year so far and always bring it with you whenever you're about to write a test. That must be why you left it at That One Little Coffee Stand At the Bottom of King's College Circle Near the Entrance to the Medical Sciences Building",
-      "status": False,
+      "status": false,
       "start_position": 5,
-      "target_position": None,
+      "target_position": null,
       "combination": "G Fuel"
     },
     {
       "id": 4,
       "name": "G Fuel",
       "description": "The ultimate drink for any gamer/Computer Science student, not because the G stands for Computer Science (because it actually stands for Gallina which is Latin for chicken, the secret ingredient in G-Fuel), but because of the sheer sustinance it provides to all individuals that spend their time in front of a computer. Like any good Computer Science Student Union, they had it ready for purchase.",
-      "status": False,
+      "status": false,
       "start_position": 4,
-      "target_position": None,
+      "target_position": null,
       "combination": "Lucky Mug"
     },
     {
       "id": 5,
       "name": "Ancient Computer Scientist Stone",
       "description": "A glowing stone that resonates with you. If you listen closely, it whispers 'JavaScript may be a language, but it's certainly not a good one'. Out of curiosity, you listen again, it says: 'Every loop has its break, every tree its root, every function its return'. It seems... all knowing, like it holds all the truths of Computer Science within it. If you look on the bottom of it, it says 'Property of the Computer Science Student Union'.",
-      "status": False,
+      "status": false,
       "start_position": 3,
       "target_position": 4,
-      "combination": None
+      "combination": null
     }
   ],
   "puzzles": [
@@ -198,7 +199,7 @@
         "run": "Nice try pal."
       },
       "win_message": "'Yes! Thank you so much. Here's your money, spend it wisely Pokemon Trainer.' You walk to the vending machine, punch in the code G4, and out comes your G Fuel. You now have G Fuel!",
-      "lose_message": "'NO! Please, you've got to try again. Here, let me get back to the same position.'"
+      "lose_message": "'NO! Please, you've got to try again. I've set you back to the same encounter, you need to win this time.'"
     },
     {
       "id": 3,
