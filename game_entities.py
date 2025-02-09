@@ -22,7 +22,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING  # TODO: explain what this does
 if TYPE_CHECKING:
     from assignments.project1.adventure import AdventureGame
 
@@ -38,7 +38,7 @@ class Location:
         - long_description: The long description of the Location, played on a player's first visit.
         - available_commands: The commands available to perform at this specific location.
         - items: The items found at this location.
-        - visited: The status of whether the user has already visited this location or not.
+        - visited: The status of whether the player has already visited this location or not.
 
     Representation Invariants:
         - len(name) > 0
@@ -54,22 +54,19 @@ class Location:
     items: list[Item]
     visited: bool
 
-    def __init__(self, location_id, brief_description, long_description, available_commands, items,
-                 visited=False) -> None:
-        """Initialize a new location.
-
-        # TODO Add more details here about the initialization if needed
-        """
+    def __init__(self, location_id: int, brief_description: str, long_description: str,
+                 available_commands: dict[str, int], items: list[Item]) -> None:
+        """Initialize a new location."""
 
         self.id = location_id
         self.brief_description = brief_description
         self.long_description = long_description
         self.available_commands = available_commands
         self.items = items
-        self.visited = visited
+        self.visited = False
 
     def conditions(self, player: Player, puzzles: dict[int, Puzzle]) -> None:
-        """Update available commands based on conditions."""
+        """Update available commands of each location based on necessary game conditions."""
 
         def has_item(item_id: int) -> bool:
             """Check if player has a specific item by its ID."""
@@ -117,14 +114,12 @@ class Item:
         - description: The description of the item.
         - status: The status of whether the item's condition to win has been met or not.
         - start_position: The starting position of the item on the grid.
-        - target_position: The optional starting position of the item on the grid.
-        - combination: The optional item this item can be combined with.
+        - combination: The id of the item that this item can be combined with, or None.
 
     Representation Invariants:
         - len(name) > 0
         - len(description) > 0
         - 1 <= start_position <= 9
-        - 1 <= target_position <= 9
     """
 
     id: int
@@ -132,22 +127,17 @@ class Item:
     description: str
     status: bool
     start_position: int
-    target_position: Optional[int] = None
-    combination: Optional[Item] = None
+    combination: Optional[int] = None
 
-    def __init__(self, id, name, description, status, start_position, target_position,
-                 combination) -> None:
-        """Initialize a new Item.
+    def __init__(self, item_id: int, name: str, description: str, status: bool,
+                 start_position: int, combination: Optional[int] = None) -> None:
+        """Initialize a new Item."""
 
-        # TODO Add more details here about the initialization if needed
-        """
-
-        self.id = id
+        self.id = item_id
         self.name = name
         self.description = description
         self.status = status
         self.start_position = start_position
-        self.target_position = target_position
         self.combination = combination
 
 
@@ -180,12 +170,9 @@ class Puzzle:
     lose_message: str
     won: bool
 
-    def __init__(self, puzzle_id, name, description, available_commands,
-                 win_message, lose_message) -> None:
-        """Initialize a new puzzle.
-
-        # TODO Add more details here about the initialization if needed
-        """
+    def __init__(self, puzzle_id: int, name: str, description: str, available_commands: dict[str, str],
+                 win_message: str, lose_message: str) -> None:
+        """Initialize a new Puzzle."""
 
         self.id = puzzle_id
         self.name = name
@@ -196,7 +183,7 @@ class Puzzle:
         self.won = False
 
     def rom_podiums(self, game: AdventureGame, player: Player) -> None:
-        """Initializes and plays through the Rom Podiums Puzzle."""
+        """Initializes and plays through the Rom Podiums Puzzle, a complex puzzle about CS riddles."""
         print(self.description)
         win_count = 0  # Track the number of solved riddles
 
@@ -234,16 +221,14 @@ class Puzzle:
                 print(self.available_commands["inspect main artifact"])
                 answer = input("Enter answer for the main artifact riddle: ").lower().strip()
                 if answer == self.available_commands["solve main artifact riddle"]:
-                    print("'That is... correct! You may now have the Ancient Computer Scientist Stone, you are worthy.'")
-                    player.items[game._items[4].id] = game._items[4]
+                    print("'That is... correct! You may now have the Ancient Computer Scientist Stone.'")
+                    player.items[game._items[4].id] = game._items[4]  # Give the user the Stone
                     self.won = True
                 else:
                     print(self.lose_message)
 
     def pokemon_battle(self, game: AdventureGame, player: Player) -> None:
-        """Initializes and plays through the Pokemon Battle Puzzle.
-        Note, this Puzzle is hardcoded, and does not represent an actual Pokemon Battle.
-        """
+        """Initializes and plays through the Pokemon Battle Puzzle, a simple puzzle."""
         print(self.description)
         while not self.won:
             print("Your options are:")
@@ -276,7 +261,7 @@ class Puzzle:
                 print(self.lose_message)
 
         print(self.win_message)
-        player.items[game._items[3].id] = game._items[3]
+        player.items[game._items[3].id] = game._items[3]  # Give the user the G-Fuel
 
     def blackjack(self, game: AdventureGame, player: Player) -> None:
         """Initializes and plays through the Blackjack Puzzle.
@@ -295,7 +280,7 @@ class Player:
 
     Instance Attributes:
         - name: The name of the user playing the game.
-        - items: The list of items that the user has obtained throughout their playthrough.
+        - items: A dictionary mapping item object ids to items that the user has obtained throughout their playthrough.
         - remaining_turns: The amount of remianing turns the player has in their playthrough.
 
     Representation Invariants:
@@ -307,19 +292,12 @@ class Player:
     items: dict[int: Item]
     remaining_turns: int
 
-    def __init__(self, name) -> None:
-        """Initialize a new player.
-
-        # TODO Add more details here about the initialization if needed
-        """
+    def __init__(self, name: str) -> None:
+        """Initialize a new player."""
 
         self.name = name
         self.items = {}
         self.remaining_turns = 50
-
-    def inventory(self) -> None:
-        """Allow the user to interact with their inventory
-        """
 
 
 if __name__ == "__main__":

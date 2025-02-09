@@ -82,8 +82,8 @@ class AdventureGame:
 
         items = []
         for item_data in data['items']:  # Go through each element associated with the 'items' key in the file
-            item_obj = Item(item_data['id'], item_data['name'], item_data['description'], item_data['status'], item_data['start_position'],
-                            item_data['target_position'], item_data['combination'])
+            item_obj = Item(item_data['id'], item_data['name'], item_data['description'], item_data['status'],
+                            item_data['start_position'], item_data['combination'])
             items.append(item_obj)
 
         puzzles = {}
@@ -167,11 +167,11 @@ if __name__ == "__main__":
                 print(location.long_description)
             elif choice == 'inventory':
                 print([player.items[item].name for item in player.items])
-                player.inventory()  # Allows the player to interact with their inventory
             elif choice == 'turns':
                 print(player.remaining_turns)
             elif choice == 'undo':
                 game_log.remove_last_event()
+                # TODO: undo should not log None, and maybe even not undo
             elif choice == 'quit':
                 quit()
 
@@ -188,7 +188,7 @@ if __name__ == "__main__":
                     pass
                 elif choice == 'return stone':
                     player.items.pop(5)
-                    layer.items[5].won = True
+                    player.items[5].won = True
                 elif choice == 'pickup usb':
                     player.items[game._items[0].id] = game._items[0]
                     player.items[1].won = True
