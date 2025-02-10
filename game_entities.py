@@ -21,6 +21,7 @@ This file is Copyright (c) 2025 CSC111 Teaching Team
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional
+import random
 
 from typing import TYPE_CHECKING  # TODO: explain what this does
 if TYPE_CHECKING:
@@ -90,7 +91,7 @@ class Location:
             4: lambda: (
                 add_command("return stone", 4) if has_item(5) else remove_command("return stone"),
                 remove_command("pokemon battle") if puzzles[2].won else None),
-            5: lambda: remove_command("play blackjack") if puzzles[3].won else None,
+            5: lambda: remove_command("play tenjack") if puzzles[3].won else None,
             7: lambda: remove_command("pickup usb") if has_item(1) else add_command("pickup usb", 7),
             8: lambda: remove_command("pickup laptop charger") if has_item(2) else add_command("pickup laptop charger",
                                                                                                8),
@@ -263,15 +264,102 @@ class Puzzle:
         print(self.win_message)
         player.items[game._items[3].id] = game._items[3]  # Give the user the G-Fuel
 
-    def blackjack(self, game: AdventureGame, player: Player) -> None:
-        """Initializes and plays through the Blackjack Puzzle.
-        Note, this Puzzle is hardcoded, and does not represent an actual game of Blackjack.
-        """
+    def tenjack(self, game: AdventureGame, player: Player) -> None:
+        """Initializes and plays through the Tenjack Puzzle."""
+        cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        player_hand = []
+        stand = False
+
+        def hit(cards: list[int], hand: list[int]) -> None:
+            """Gives the play an additional card."""
+            card = random.choice(cards)
+            hand.append(card)
+            cards.remove(card)
+            print(self.available_commands['hit'], hand[-1])
+            print('You have:', sum(hand))
+
+        print(self.description)
+        hit(cards, player_hand)  # For the initial card given
+        while not stand:
+            if sum(player_hand) > 21:
+                print('Your hand is over 21, therefore, you bust.')
+                print(self.lose_message)
+                return
+
+            print("Your options are:")
+            for action in self.available_commands:
+                print("-", action)
+
+            choice = input("\nEnter action: ").lower().strip()
+            while choice not in self.available_commands:
+                print("That was an invalid option; try again.")
+                choice = input("\nEnter action: ").lower().strip()
+
+            print("========")
+            print("You decided to:", choice)
+
+            if choice == 'hit':
+                hit(cards, player_hand)
+
+            elif choice == 'stand':
+                print(self.available_commands['stand'], sum(player_hand))
+                stand = True
+
+        dealer_hand = random.randint(17, 21)
+        print('The dealer has a', dealer_hand)
+        if sum(player_hand) > dealer_hand:
+            print(self.win_message)
+            player.items[game._items[2].id] = game._items[2]
+            self.won = True
+        elif sum(player_hand) < dealer_hand:
+            print(self.lose_message)
+        else:
+            print("'Tie, you have to play me again.'")
+
 
     def ddakji(self) -> None:
-        """Initializes and plays through the Ddakji Puzzle.
-        Note, this Puzzle is relatively hardcoded.
-        """
+        """Initializes and plays through the Ddakji Puzzle."""
+        power = 'low'
+        hand = 'right'
+        side = 'up'
+
+        print(self.description)
+
+        while not self.won:
+
+            print("Your options are:")
+            for action in self.available_commands:
+                print("-", action)
+
+            choice = input("\nEnter action: ").lower().strip()
+            while choice not in self.available_commands:
+                print("That was an invalid option; try again.")
+                choice = input("\nEnter action: ").lower().strip()
+
+            print("========")
+            print("You decided to:", choice)
+
+            print(self.available_commands[choice])
+            if choice == 'current form':
+                print(self.available_commands[choice], [power, hand, side])
+            elif choice == "set low power":
+                power = 'low'
+            elif choice == "set high power":
+                power = 'high'
+            elif choice == "set right hand":
+                hand = 'right'
+            elif choice == "set left hand":
+                hand = 'left'
+            elif choice == "set side up":
+                side = 'up'
+            elif choice == "set side down":
+                side = 'down'
+            elif choice == "throw":
+                if power == 'high' and hand == "right" and side == "down":
+                    self.won = True
+                    print(self.available_commands[choice], self.win_message)
+                else:
+                    print(self.lose_message)
 
 
 @dataclass

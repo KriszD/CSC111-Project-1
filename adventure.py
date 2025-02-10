@@ -130,7 +130,7 @@ if __name__ == "__main__":
 
     menu = ["look", "inventory", "turns", "undo", "log", "quit"]
     other_commands = ['charge laptop', 'take subway', 'return stone', 'pickup usb', 'pickup laptop charger']
-    puzzle_commands = ['play ddakji', 'investigate podiums', 'pokemon battle', 'play blackjack']
+    puzzle_commands = ['play ddakji', 'investigate podiums', 'pokemon battle', 'play tenjack']
     choice = None
     event = None
 
@@ -200,8 +200,8 @@ if __name__ == "__main__":
                     game._puzzles[1].rom_podiums(game, player)
                 elif choice == 'pokemon battle':
                     game._puzzles[2].pokemon_battle(game, player)
-                elif choice == 'play blackjack':
-                    game._puzzles[3].blackjack(game, player)
+                elif choice == 'play tenjack':
+                    game._puzzles[3].tenjack(game, player)
                 elif choice == 'play ddakji':
                     game._puzzles[4].ddakji()
         event = Event(location.id, location.long_description, None, None, game_log.last)

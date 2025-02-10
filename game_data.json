@@ -62,7 +62,7 @@
         "go south": 8,
         "go west": 4,
         "go east": 6,
-        "play blackjack": 5
+        "play tenjack": 5
       },
       "items": ["Lucky Mug"]
     },
@@ -200,7 +200,7 @@
     },
     {
       "id": 3,
-      "name": "Blackjack",
+      "name": "Tenjack",
       "description": "You notice that among the items being gambled on the tables, your Lucky Mug is one of the items in the middle. 'Hey, that's my Lucky Mug!', you say. The gamblers turn and look at you, and slowly hide their cards. 'Ever heard of finders keepers?, says one of the gamblers. 'You left your mug here that one time you bought coffee and asked the shop owners to fill it up, but then you ran away because you forgot you had a test next period. As shopowners do, they gave it to us to gamble with. If you want your mug back, you are gonna have to beat me in a game of blacjack.'",
       "available_commands": {
         "hit":  "Hit! You receive a ",
@@ -214,12 +214,22 @@
       "name": "Ddakji",
       "description": "As the people who just arrived fan out, you realize you are completely alone in the subway station, there are no longer any people here. Except, there is one person, a man with a briefcase sitting on a bench. He looks at you and greets you. 'Hello, would you like to play a game?', he asks. He sees you are hesistant, and says, 'You know you this is just a game right? Like, you are in a text adventure game, this isn't a horror movie. You don't need to be scared. Anyways, if you beat me in this game, you will unlock the ability to travel between St. George station, and Queens Park station as you please, at the cost of only 1 turn. The game is simple, its Ddakji, the Korean game where you try and flip over your opponents envelope by throwing your own envelope at it. Heres your envelope, try and flip mine over. Adjust your settings before you actually throw it, otherwise this might not go so well for you. By default, your power is set to low, but if you change it will go to medium, then high, and then back to low. Likewise, by default you are using your right hand, but can switch to your left, and you are holding the envelope with the opening down, but can reorient it too.'",
       "available_commands": {
-        "power":  "You adjust your level of power to ",
-        "hand":  "You switch your hand to ",
-        "envelope side":  "You change the side of the envelope you are holding down to "
+        "observe tv": "You look up at the TV which is playing the news; the forecast says there is a high chance of snow tomorrow morning.",
+        "read poster": "You read a poster on the wall, its an advertisement for a podcast called 'In the Loop'... seems interesting.",
+        "observe athlete": "You see a dude wearing a Blue Jays jersey with 'Paul Quantrill' on the back, fidgetting with a baseball in his right hand. He must be heading to the Blue Jays game.",
+        "eavesdrop": "You overhear two businessmen talking. 'Yes, yes, the profit margins are very bad, I need to contact the JCK and ask for the QWP to get the RFL going.', he says. You have no idea what any of that means.",
+        "observe book": "You look over to your right and see a person sitting on a bench. Everything seems quite normal with them, other than the fact that the book they are reading, is upside down.",
+        "current form": "Your current form of throw:",
+        "set low power": "You adjust your level of power to be low.",
+        "set high power":  "You adjust your level of power to be high.",
+        "set right hand":  "You adjust your envelope to be in your right hand.",
+        "set left hand": "You adjust your envelope to be in your left hand.",
+        "set side up":  "You adjust your envelope to be face up",
+        "set side down": "You adjust your envelope to be face down",
+        "throw": "You throw your envelope at the one on the floor."
       },
-      "win_message": "'Congratulations, you have won this game. By the power vested in me, by Metrolinx, you may now utilize the subways running between St. George and Queens Park Station.'",
-      "lose_message": "'It's quite the difficult game, isn't it? The ability to travel between stations is a great asset, however, as they say, you should not spend all your money in one place... which in this case your money is your turn count...'"
+      "win_message": "The envelope strikes the other, flipping it over instantly. 'Congratulations, you have won this game. By the power vested in me, by the Toronto Transit Commission, you may now utilize the subways running between St. George and Queens Park Station.'",
+      "lose_message": "Your envelope hits the other, and the one on the floor barely moves. 'It's quite the difficult game, isn't it? The ability to travel between stations is a great asset, however, as they say, you should not spend all your money in one place... which in this case your money is your turn count...'"
     }
   ]
 }
