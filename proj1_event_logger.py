@@ -20,6 +20,7 @@ please consult our Course Syllabus.
 
 This file is Copyright (c) 2025 CSC111 Teaching Team
 """
+# Some of this code was written with the help of ChatGPT
 
 from __future__ import annotations
 from dataclasses import dataclass
@@ -100,7 +101,7 @@ class EventList:
         self.first = None
         self.last = None
 
-    def __len__(self):
+    def __len__(self) -> int:
         """Return the number of events in the EventList."""
         count = 0
         current = self.first
@@ -140,7 +141,7 @@ class EventList:
 
         return self.first is None
 
-    def add_event(self, event: Event, command: str = None) -> None:
+    def add_event(self, event: Event) -> None:
         """Add the given new event to the end of this event list.
         The given command is the command which was used to reach this new event, or None if this is the first
         event in the game.
@@ -160,11 +161,6 @@ class EventList:
             self.first = event
             self.last = event
         else:
-            # self.last.next_command = command
-            # self.last.next = event
-            # self.last.next.prev = self.last
-            # self.last = self.last.next
-            ## NEW
             event.prev = self.last
             self.last.next = event
             self.last = event
@@ -190,10 +186,6 @@ class EventList:
             self.first = None
             self.last = None
         else:
-            # self.last = self.last.prev
-            # self.last.next = None
-            # self.last.next_command = None
-            ## NEW
             self.last = self.last.prev
             self.last.next = None
 
@@ -219,9 +211,8 @@ class EventList:
 
 
 if __name__ == "__main__":
-    pass
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 120,
-    #     'disable': ['R1705', 'E9998', 'E9999']
-    # })
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120,
+        'disable': ['R1705', 'E9998', 'E9999']
+    })

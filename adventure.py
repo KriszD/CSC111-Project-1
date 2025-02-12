@@ -17,9 +17,10 @@ please consult our Course Syllabus.
 
 This file is Copyright (c) 2025 CSC111 Teaching Team
 """
+# Some of this code was written with the help of ChatGPT
 from __future__ import annotations
 import json
-import copy  #NEW
+import copy
 from typing import Optional
 from game_entities import Location, Item, Puzzle, Player
 from proj1_event_logger import Event, EventList
@@ -29,9 +30,10 @@ class AdventureGame:
     """A text adventure game class storing all location, item and map data.
 
     Instance Attributes:
+        - items: a list of Item objects, representing all items in the game.
+        - puzzles: a mapping from puzzle id to Puzzle object, representing all puzzles in the game.
         - current_location_id: The id of the current location that the user is at. By default, they start at position 1.
         - ongoing: The status of the condition of the game (whether it is ongoing or not)
-        - submitted: Whether the user has submitted their assignment or not (one of the win conditions)
 
     Representation Invariants:
         - 1 <= current_location_id <= 9
@@ -39,13 +41,9 @@ class AdventureGame:
 
     # Private Instance Attributes (do NOT remove these two attributes):
     #   - _locations: a mapping from location id to Location object.
-    #                       This represents all the locations in the game.
-    #   - _items: a list of Item objects, representing all items in the game.
-    #   - _puzzles: a mapping from puzzle id to Puzzle object.
-    #                       This represents all the puzzles in the game.
     _locations: dict[int, Location]
-    _items: list[Item]
-    _puzzles: dict[int, Puzzle]
+    items: list[Item]
+    puzzles: dict[int, Puzzle]
     current_location_id: int
     ongoing: bool
 
@@ -65,11 +63,9 @@ class AdventureGame:
         True
         """
 
-        self._locations, self._items, self._puzzles = self._load_game_data(game_data_file)
-
+        self._locations, self.items, self.puzzles = self._load_game_data(game_data_file)
         self.current_location_id = initial_location_id
         self.ongoing = True
-        self.submitted = False
 
     @staticmethod
     def _load_game_data(filename: str) -> tuple[dict[int, Location], list[Item], dict[int, Puzzle]]:
@@ -93,21 +89,22 @@ class AdventureGame:
 
         locations = {}
         for loc_data in data['locations']:  # Go through each element associated with the 'locations' key in the file
-            location_obj = Location(loc_data['id'], loc_data['name'], loc_data['brief_description'],
-                                    loc_data['long_description'], loc_data['available_commands'], loc_data['items'])
+            information = (loc_data['name'], loc_data['brief_description'], loc_data['long_description'])
+
+            location_obj = Location(loc_data['id'], information, loc_data['available_commands'], loc_data['items'])
             locations[loc_data['id']] = location_obj
 
         items = []
         for item_data in data['items']:  # Go through each element associated with the 'items' key in the file
-            item_obj = Item(item_data['id'], item_data['name'], item_data['description'], item_data['status'],
-                            item_data['combination'])
+            item_obj = Item(item_data['id'], item_data['name'], item_data['description'], item_data['status'])
             items.append(item_obj)
 
         puzzles = {}
         for puzzle_data in data['puzzles']:  # Go through each element associated with the 'puzzles' key in the file
-            puzzle_obj = Puzzle(puzzle_data['id'], puzzle_data['name'], puzzle_data['description'],
-                                puzzle_data['available_commands'], puzzle_data['win_message'],
-                                puzzle_data['lose_message'])
+            information = (puzzle_data['name'], puzzle_data['description'])
+            messages = (puzzle_data['win_message'], puzzle_data['lose_message'])
+
+            puzzle_obj = Puzzle(puzzle_data['id'], information, puzzle_data['available_commands'], messages)
             puzzles[puzzle_data['id']] = puzzle_obj
 
         return locations, items, puzzles
@@ -117,11 +114,11 @@ class AdventureGame:
         If no ID is provided, return the Location object associated with the current location.
 
         >>> game = AdventureGame('game_data.json', 1)
-        >>> game.get_location()
-        Location(id=1, name='John P. Robarts Research Library, Floor 14', brief_description='After a long elevator ride, you arrive on the 14th floor of Robarts. The floor is filled with students cramming for their midterms, and there is not even one single seat available.', long_description='After a long journey, you finally reach the 14th floor. When you open the door, the overwhelming sound of silence hits you. It is perfectly silent, not even one person talking. Every seat is taken, and everyone is working on their tablets and laptops, clearly studying for their midterms. You gaze outside and you see the whole of the UofT campus, you know all your items are out there, ready for you to find. You walk around on your tiptoes, so as to not make even a single sound. As you walk around, you see many outlets both on the tables, as well as on the walls, where many students are charging their devices to keep their grind going.', available_commands={'go south': 4, 'go east': 2, 'charge laptop': 1}, items=[''], visited=False)
+        >>> game.get_location(1).information[0]
+        'John P. Robarts Research Library, Floor 14'
 
-        >>> game.get_location(2)
-        Location(id=2, name='St. George Subway Station', brief_description='You enter St. George Subway Subway Station, and arrive on the Line 1 platform. The northbound subway car just left, but you see the southbound subway car arriving now, with its doors opening. You could get on, should you have access to it.', long_description="You arrive at the St. George Subway Station. You enter from the St. George Street entrance and arrive on the Line 1 platform. You see lots of people getting off the subway car, some heading up the stairs, some heading down the stairs onto the Line 2 platform. The floors are surprisingly clean, and you smell a strong scent of lavender. 'How delicious', you think to yourself. You see the Southbound subway car arrive on the platform, and its doors are open. You could get on, should you have access to use it.", available_commands={'go south': 5, 'go west': 1, 'go east': 3, 'take subway': 9, 'play ddakji': 2}, items=[''], visited=False)
+        >>> game.get_location(2).information[0]
+        'St. George Subway Station'
         """
 
         if loc_id is None:
@@ -129,24 +126,24 @@ class AdventureGame:
         else:
             return self._locations[loc_id]
 
-    def combine(self, player: Player) -> None:
+    def combine(self, combine_player: Player) -> None:
         """Combine items if possible, printing a result message.
 
-        >>> player = Player('user')
+        >>> combine_player = Player('user')
         >>> game = AdventureGame('game_data.json', 1)
-        >>> game.combine(player)
+        >>> game.combine(combine_player)
         You don't have anything you can combine at the moment.
         """
-        if not (self._items[2].status and self._items[3].status):
-            if 3 in player.items and 4 in player.items:
+        if not (self.items[2].status and self.items[3].status):
+            if 3 in combine_player.items and 4 in combine_player.items:
                 print("You put your G-Fuel in one hand, and your Lucky Mug in the other, "
                       "and you close your eyes and slam them together. When you open your eyes, "
                       "you have a mug full of G-Fuel!")
-                player.items[3].status = True
-                player.items[4].status = True
-            elif 3 in player.items:
+                combine_player.items[3].status = True
+                combine_player.items[4].status = True
+            elif 3 in combine_player.items:
                 print("Something to put in your Lucky Mug would be really great right now.")
-            elif 4 in player.items:
+            elif 4 in combine_player.items:
                 print("Something to put this G-Fuel in would be really great right now.")
             else:
                 print("You don't have anything you can combine at the moment.")
@@ -159,96 +156,88 @@ class AdventureGame:
         print("You have every single item you need. It is 1 minute before the deadline, do you submit "
               "your assignment? (yes, no)")
 
-        choice = input("\nEnter action: ").lower().strip()
-        while choice not in ["yes", "no"]:
+        win_choice = input("\nEnter action: ").lower().strip()
+        while win_choice not in ["yes", "no"]:
             print("That was an invalid option; try again.")
-            choice = input("\nEnter action: ").lower().strip()
+            win_choice = input("\nEnter action: ").lower().strip()
 
         print("========")
-        print("You decided to:", choice)
+        print("You decided to:", win_choice)
 
-        if choice == "yes":
+        if win_choice == "yes":
             print("You submit your assignment in time. Congratulations, you won the game with",
                   player.remaining_turns, "turns left!")
-        elif choice == "no":
+        elif win_choice == "no":
             print("You decide not to submit your assignment... you fail it. Congratulations, you lost the game "
                   "with", player.remaining_turns, "turns left! "
                                                   "Your score was: ",
-                  sum([item.status for item in self._items if item.status is True]), "out of 5")
+                  sum([item.status for item in self.items if item.status is True]), "out of 5")
 
-    def save_game_state(self, player: Player, game_log: EventList) -> dict:
+    def save_game_state(self, save_player: Player, save_game_log: EventList) -> dict:
         """Return a snapshot (as a dictionary) of all mutable game state.
 
-         >>> player = Player('user')
+        >>> save_player = Player('user')
         >>> game = AdventureGame('game_data.json', 1)
-        >>> game_log = []
-        >>> snapshot = game.save_game_state(player, game_log)
-        >>> isinstance(snapshot, dict)  # Check if the result is a dictionary
+        >>> save_game_log = []
+        >>> snapshot = game.save_game_state(save_player, save_game_log)
+        >>> isinstance(snapshot, dict)
         True
         """
         return {
             'current_location_id': self.current_location_id,
             'ongoing': self.ongoing,
-            'submitted': self.submitted,
             '_locations': copy.deepcopy(self._locations),
-            '_items': copy.deepcopy(self._items),
-            '_puzzles': copy.deepcopy(self._puzzles),
-            'player_items': copy.deepcopy(player.items),
-            'player_remaining_turns': player.remaining_turns,
-            'game_log': copy.deepcopy(game_log)
+            'items': copy.deepcopy(self.items),
+            'puzzles': copy.deepcopy(self.puzzles),
+            'player.items': copy.deepcopy(save_player.items),
+            'player_remaining_turns': save_player.remaining_turns,
+            'game_log': copy.deepcopy(save_game_log)
         }
 
-    def load_game_state(self, snapshot: dict, player: Player, game_log: EventList) -> None:
+    def load_game_state(self, snapshot: dict, load_player: Player, load_game_log: EventList) -> None:
         """Restore the game state from the given snapshot dictionary.
 
         ChatGPT made this doctest.
-        >>> # Create a game with initial location 1.
         >>> game = AdventureGame('game_data.json', 1)
-        >>> player = Player('user')
-        >>> game_log = EventList()
-        >>> # Set player's remaining turns to a known value for testing.
-        >>> player.remaining_turns = 10
-        >>> # Save the current state.
-        >>> snapshot = game.save_game_state(player, game_log)
-        >>> # Change some of the game state.
+        >>> load_player = Player('user')
+        >>> load_game_log = EventList()
+        >>> load_player.remaining_turns = 10
+        >>> snapshot = game.save_game_state(load_player, load_game_log)
         >>> game.current_location_id = 5
-        >>> player.remaining_turns = 3
+        >>> load_player.remaining_turns = 3
         >>> game.ongoing = False
-        >>> # Check that the state has changed.
         >>> game.current_location_id
         5
-        >>> player.remaining_turns
+        >>> load_player.remaining_turns
         3
         >>> game.ongoing
         False
-        >>> # Now restore the state from the snapshot.
-        >>> game.load_game_state(snapshot, player, game_log)
+        >>> game.load_game_state(snapshot, load_player, load_game_log)
         >>> game.current_location_id
         1
-        >>> player.remaining_turns
+        >>> load_player.remaining_turns
         10
         >>> game.ongoing
         True
         """
         self.current_location_id = snapshot['current_location_id']
         self.ongoing = snapshot['ongoing']
-        self.submitted = snapshot['submitted']
         self._locations = snapshot['_locations']
-        self._items = snapshot['_items']
-        self._puzzles = snapshot['_puzzles']
-        player.items = snapshot['player_items']
-        player.remaining_turns = snapshot['player_remaining_turns']
+        self.items = snapshot['items']
+        self.puzzles = snapshot['puzzles']
+        load_player.items = snapshot['player.items']
+        load_player.remaining_turns = snapshot['player_remaining_turns']
         restored_log = snapshot['game_log']
-        game_log.first = restored_log.first
-        game_log.last = restored_log.last
+        load_game_log.first = restored_log.first
+        load_game_log.last = restored_log.last
 
 
 if __name__ == "__main__":
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 120,
-    #     'disable': ['R1705', 'E9998', 'E9999']
-    # })
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120,
+        'disable': ['R1705', 'E9998', 'E9999']
+    })
 
     game_log = EventList()
     game = AdventureGame('game_data.json', 1)  # load data, setting initial location ID to 1
@@ -261,21 +250,23 @@ if __name__ == "__main__":
     choice = None
     event = None
 
-    ## NEW
     state_history = [game.save_game_state(player, game_log)]
+
+    last_location_id = game.current_location_id
 
     while game.ongoing:
         location = game.get_location()
-        location.conditions(player, game._puzzles)
+        location.conditions(player, game.puzzles)
 
-        #game_log.add_event(event, choice)
-
-        print("You are now at:", location.name)
-        if not location.visited:
-            print(location.long_description)
-            location.visited = True
-        else:
-            print(location.brief_description)
+        if game.current_location_id != last_location_id:
+            print("You are now at:", location.information[0])
+            if not location.visited:
+                print(location.information[1])  # Brief description on first visit
+                location.visited = True
+            else:
+                print(location.information[2])  # Long description after first visit
+            last_location_id = game.current_location_id  # Update the last location
+        # Do not print anything if the location has not changed
 
         print("What to do? Choose from: look, inventory, combine, turns, score, undo, log, quit")
         print("At this location, you can also:")
@@ -290,13 +281,9 @@ if __name__ == "__main__":
         print("========")
         print("You decided to:", choice)
 
-        # --- NEW EVENT LOGGING ---
-        # Create an event that permanently records the command issued from the current location.
-        new_event = Event(location.id, location.long_description, choice)
+        new_event = Event(location.id, location.information[2], choice)
         game_log.add_event(new_event)
-        # ---------------------------
 
-        ## NEW
         # If the user wants to undo, revert immediately.
         if choice == 'undo':
             if len(state_history) > 1:
@@ -308,37 +295,19 @@ if __name__ == "__main__":
                 print("No moves to undo.")
                 continue
 
-
-
         if choice in menu:
             if choice == "log":
                 game_log.display_events()
             elif choice == 'look':
-                print(location.long_description)
-                player.remaining_turns -= 1
+                print(location.information[2])
             elif choice == 'inventory':
                 print([player.items[item].name for item in player.items])
-                player.remaining_turns -= 1
             elif choice == 'combine':
                 game.combine(player)
-                player.remaining_turns -= 1
             elif choice == 'turns':
                 print(player.remaining_turns)
             elif choice == 'score':
-                print("Your score is:", sum([item.status for item in game._items if item.status is True]), "out of 5")
-            # elif choice == 'undo':
-            #     if len(state_history) > 1:
-            #         # Remove the current state snapshot and load the one from before the last move.
-            #         state_history.pop()  # remove snapshot for the current turn (not yet processed)
-            #         load_game_state(state_history[-1], game, player, game_log)
-            #         print("Undid the last move.")
-            #         continue  # Skip further processing this turn.
-            #     else:
-            #         print("No moves to undo.")
-            #         continue
-
-            #game_log.remove_last_event()
-            # TODO: undo should not log None, and maybe even not undo
+                print("Your score is:", sum([item.status for item in game.items if item.status is True]), "out of 5")
             elif choice == 'quit':
                 quit()
 
@@ -346,6 +315,7 @@ if __name__ == "__main__":
             # Handle non-menu actions
             result = location.available_commands[choice]
             game.current_location_id = result  # Changes the current location id to the updated one
+            player.remaining_turns -= 1
 
             if choice in other_commands:
                 if choice == 'charge laptop':
@@ -356,29 +326,26 @@ if __name__ == "__main__":
                     player.items[5].status = True
                     player.items.pop(5)
                 elif choice == 'pickup usb':
-                    player.items[game._items[0].id] = game._items[0]
+                    player.items[game.items[0].id] = game.items[0]
                     player.items[1].status = True
                 elif choice == 'pickup laptop charger':
-                    player.items[game._items[1].id] = game._items[1]
+                    player.items[game.items[1].id] = game.items[1]
 
             if choice in puzzle_commands:
                 if choice == 'investigate podiums':
-                    game._puzzles[1].rom_podiums(game, player)
+                    game.puzzles[1].rom_podiums(game, player)
                 elif choice == 'pokemon battle':
-                    game._puzzles[2].pokemon_battle(game, player)
+                    game.puzzles[2].pokemon_battle(game, player)
                 elif choice == 'play tenjack':
-                    game._puzzles[3].tenjack(game, player)
+                    game.puzzles[3].tenjack(game, player)
                 elif choice == 'play ddakji':
-                    game._puzzles[4].ddakji(player)
+                    game.puzzles[4].ddakji(player)
 
-        ## NEW
         state_history.append(game.save_game_state(player, game_log))
-
-        #event = Event(location.id, location.long_description, None, None, game_log.last)
 
         if player.remaining_turns <= 0:
             print("You ran out of turns. Your score was:",
-                  sum([item.status for item in game._items if item.status is True]), "out of 5")
+                  sum([item.status for item in game.items if item.status is True]), "out of 5")
             game.ongoing = False
-        if all(item.status is True for item in game._items):  # Check if the user won the game.
+        if all(item.status is True for item in game.items):  # Check if the user won the game.
             game.win()

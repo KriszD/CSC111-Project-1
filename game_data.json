@@ -122,36 +122,31 @@
       "id": 1,
       "name": "USB",
       "description": "The USB on which all your Project 1 files are backed up. Like any good Computer Science student, you would never have a backup on your cloud, so you need this USB to submit your project. It's a 1 terabyte USB, so it's pretty dang large... not exactly sure how you forgot it somewhere.",
-      "status": false,
-      "combination": null
+      "status": false
     },
     {
       "id": 2,
       "name": "Laptop Charger",
       "description": "Your trusty old Laptop Charger that's been powering your laptop for years. You always plug it into the wall during your lectures to create a mini-limbo in the aisles of the lecture seats, so it's quite surprising you forgot it somewhere. Your laptop died this morning before you took a nap, so it needs to be charged to finally submit your Project 1.",
-      "status": false,
-      "combination": null
+      "status": false
     },
     {
       "id": 3,
       "name": "Lucky Mug",
       "description": "The mug your parents gave you as you moved into your dorm for your first year of university. On it, it says 'Good luck, you're going to crush it! (But call your parents, okay?)'. You've been using this mug throughout the whole school year so far and always bring it with you whenever you're about to write a test. That must be why you left it at That One Little Coffee Stand At the Bottom of King's College Circle Near the Entrance to the Medical Sciences Building",
-      "status": false,
-      "combination": "G Fuel"
+      "status": false
     },
     {
       "id": 4,
       "name": "G Fuel",
       "description": "The ultimate drink for any gamer/Computer Science student, not because the G stands for Computer Science (because it actually stands for Gallina which is Latin for chicken, the secret ingredient in G-Fuel), but because of the sheer sustenance it provides to all individuals that spend their time in front of a computer. Like any good Computer Science Student Union, they had it ready for purchase.",
-      "status": false,
-      "combination": "Lucky Mug"
+      "status": false
     },
     {
       "id": 5,
       "name": "Ancient Computer Scientist Stone",
       "description": "A glowing stone that resonates with you. If you listen closely, it whispers 'JavaScript may be a language, but it's certainly not a good one'. Out of curiosity, you listen again, it says: 'Every loop has its break, every tree its root, every function its return'. It seems... all-knowing like it holds all the truths of Computer Science within it. If you look at the bottom of it, it says 'Property of the Computer Science Student Union'.",
-      "status": false,
-      "combination": null
+      "status": false
     }
   ],
   "puzzles": [

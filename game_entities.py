@@ -18,12 +18,13 @@ please consult our Course Syllabus.
 
 This file is Copyright (c) 2025 CSC111 Teaching Team
 """
+# Some of this code was written with the help of ChatGPT
+
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Optional
 import random
 
-from typing import TYPE_CHECKING  # TODO: explain what this does
+from typing import TYPE_CHECKING  # suggested by ChatGPT
 
 if TYPE_CHECKING:
     from assignments.project1.adventure import AdventureGame
@@ -35,43 +36,37 @@ class Location:
 
     Instance Attributes:
         - id: The id of the location.
-        - name: The name of the location.
-        - brief_description: The brief description of the Location, played after the first or when the player 'looks'.
-        - long_description: The long description of the Location, played on a player's first visit.
+        - information: A tuple consisting of three things: the name of the location, the brief description
+          of the Location, played after the first or when the player 'looks',
+          and the long description of the Location, played on a player's first visit.
         - available_commands: The commands available to perform at this specific location.
         - items: The items found at this location.
         - visited: The status of whether the player has already visited this location or not.
 
     Representation Invariants:
-        - len(name) > 0
-        - len(brief_description) > 0
-        - len(long_description) > 0
+        - all([len(info) > 0 for info in information])
         - len(available_commands) > 0
     """
 
     id: int
-    name: str
-    brief_description: str
-    long_description: str
+    information: tuple[str, str, str]  # name, brief description, long description
     available_commands: dict[str, int]
     items: list[Item]
     visited: bool
 
-    def __init__(self, location_id: int, name: str, brief_description: str, long_description: str,
+    def __init__(self, location_id: int, information: tuple[str, str, str],
                  available_commands: dict[str, int], items: list[Item]) -> None:
         """Initialize a new location.
 
-        >>> location = Location(1, 'Forest', 'A dark forest', \
-        'A thick and misty forest with tall trees.', {'look': 1}, [])
-        >>> location.name
+        >>> location = Location(1, ('Forest', 'A dark forest', \
+        'A thick and misty forest with tall trees.'), {'look': 1}, [])
+        >>> location.information[0]
         'Forest'
         >>> location.visited
         False
         """
         self.id = location_id
-        self.name = name
-        self.brief_description = brief_description
-        self.long_description = long_description
+        self.information = information
         self.available_commands = available_commands
         self.items = items
         self.visited = False
@@ -81,8 +76,8 @@ class Location:
 
         >>> player = Player("Bob")
         >>> item = Item(1, "Laptop", "A shiny laptop", False)
-        >>> puzzle = Puzzle(1, "Puzzle", "Solve the riddle", {"look": "It's a riddle!"}, "You solved it!", "Try again!")
-        >>> location = Location(1, "Forest", "A dark forest", "A thick and misty forest.", {"look": 1}, [item])
+        >>> puzzle = Puzzle(1, ("Puzzle", "Solve riddle"), {"look": "It's a riddle!"}, ("You solved it!", "Try again!"))
+        >>> location = Location(1, ("Forest", "A dark forest", "A thick and misty forest."), {"look": 1}, [item])
         >>> location.conditions(player, {1: puzzle})
         >>> "charge laptop" in location.available_commands
         False
@@ -134,7 +129,6 @@ class Item:
         - description: The description of the item.
         - status: The status of whether the item's condition to win has been met or not.
         - start_position: The starting position of the item on the grid.
-        - combination: The id of the item that this item can be combined with, or None.
 
     Representation Invariants:
         - len(name) > 0
@@ -146,10 +140,8 @@ class Item:
     name: str
     description: str
     status: bool
-    combination: Optional[int] = None
 
-    def __init__(self, item_id: int, name: str, description: str, status: bool,
-                 combination: Optional[int] = None) -> None:
+    def __init__(self, item_id: int, name: str, description: str, status: bool) -> None:
         """Initialize a new Item.
 
         >>> item = Item(1, "Laptop", "A shiny laptop", False)
@@ -162,7 +154,6 @@ class Item:
         self.name = name
         self.description = description
         self.status = status
-        self.combination = combination
 
 
 @dataclass
@@ -171,50 +162,44 @@ class Puzzle:
 
     Instance Attributes:
         - id: The id of the puzzle.
-        - name: The string name of the puzzle.
-        - description: The instructions for the completion of the puzzle provided to the user.
+        - information: A tuple consisting of two things: the string name of the puzzle, and the instructions
+          for the completion of the puzzle provided to the user.
         - available_commands: The commands available during the puzzle and their respective messages.
-        - win_message: The message provided when the player completes the puzzle successfully.
-        - lose_message: The message provided when the player completes the puzzle unsuccessfully.
+        - messages: A tuple consisting of two things: the message provided when the player completes the puzzle
+          successfully, and the message provided when the player completes the puzzle unsuccessfully.
         - won: The status of whether the player has already completed this puzzle successfully or not.
 
     Representation Invariants:
         - 1 <= id <= 4
-        - len(name) > 0
-        - len(description) > 0
-        - len(win_message) > 0
-        - len(lose_message) > 0
+        - all([len(info) > 0 for info in information])
+        - all([len(message) > 0 for message in messages])
     """
 
     id: int
-    name: str
-    description: str
+    information: tuple[str, str]
     available_commands: dict[str, str]
-    win_message: str
-    lose_message: str
+    messages: tuple[str, str]
     won: bool
 
-    def __init__(self, puzzle_id: int, name: str, description: str, available_commands: dict[str, str],
-                 win_message: str, lose_message: str) -> None:
+    def __init__(self, puzzle_id: int, information: tuple[str, str], available_commands: dict[str, str],
+                 messages: tuple[str, str]) -> None:
         """Initialize a new Puzzle.
 
-        >>> puzzle = Puzzle(1, "Puzzle", "Solve the riddle", {"look": "It's a riddle!"}, "You solved it!", "Try again!")
-        >>> puzzle.name
+        >>> puzzle = Puzzle(1, ("Puzzle", "Solve riddle"), {"look": "It's a riddle!"}, ("You solved it!", "Try again!"))
+        >>> puzzle.information[0]
         'Puzzle'
         >>> puzzle.won
         False
         """
         self.id = puzzle_id
-        self.name = name
-        self.description = description
+        self.information = information
         self.available_commands = available_commands
-        self.win_message = win_message
-        self.lose_message = lose_message
+        self.messages = messages
         self.won = False
 
     def rom_podiums(self, game: AdventureGame, player: Player) -> None:
         """Initializes and plays through the Rom Podiums Puzzle, a complex puzzle about CS riddles."""
-        # Store main artifact commands temporarily
+
         main_artifact_commands = {
             "inspect main artifact": "I am a quite complex password. Guess me? You cannot."
                                      " 4 ordered numbers, I definitely am not.",
@@ -225,11 +210,10 @@ class Puzzle:
         self.available_commands.pop("inspect main artifact", None)
         self.available_commands.pop("solve main artifact riddle", None)
 
-        print(self.description)
+        print(self.information[1])
         win_count = 0  # Track the number of solved riddles
 
         while not self.won:
-            # Display available commands
             print("Your options are:")
             for action in self.available_commands:
                 print("-", action)
@@ -242,50 +226,62 @@ class Puzzle:
 
             if choice == 'quit':
                 return
-            # Handle the actions
-            if choice.startswith("inspect artifact"):
-                artifact_number = choice.split()[2]
-                print(f"Inspecting Artifact: {self.available_commands[choice]}")
 
-            elif choice.startswith("solve artifact"):
-                artifact_number = choice.split()[2]
-                answer = input(f"Enter answer for {choice}: ").lower().strip()
+            # Delegate command handling
+            if choice.startswith("inspect artifact") or choice.startswith("solve artifact"):
+                win_count = self.handle_artifact(choice, player, win_count, main_artifact_commands)
+            elif choice.startswith("inspect main artifact") or choice.startswith("solve main artifact"):
+                self.handle_main_artifact(choice, player, game)
 
-                correct_answer = self.available_commands.get(f"solve artifact {artifact_number} riddle")
-                if answer == correct_answer:
-                    player.remaining_turns -= 1
-                    print(self.win_message)
-                    win_count += 1
+    def handle_artifact(self, choice: str, player: Player, win_count: int, main_artifact_commands: dict) -> int:
+        """Handles artifact interactions, including inspecting and solving."""
 
-                    # Remove the solved artifact commands
-                    self.available_commands.pop(choice, None)
-                    self.available_commands.pop(f"inspect artifact {artifact_number}", None)
+        if choice.startswith("inspect artifact"):
+            artifact_number = choice.split()[2]
+            print(f"Inspecting Artifact: {self.available_commands[choice]}")
 
-                    # Add the main artifact commands once all 6 riddles are solved
-                    if win_count == 6:
-                        self.available_commands.update(main_artifact_commands)
+        elif choice.startswith("solve artifact"):
+            artifact_number = choice.split()[2]
+            answer = input(f"Enter answer for {choice}: ").lower().strip()
+            correct_answer = self.available_commands.get(f"solve artifact {artifact_number} riddle")
 
-                else:
-                    player.remaining_turns -= 1
-                    print(self.lose_message)
+            if answer == correct_answer:
+                player.remaining_turns -= 1
+                print(self.messages[0])
+                win_count += 1
 
-            # Main artifact interaction
-            elif choice == "inspect main artifact":
-                print(self.available_commands["inspect main artifact"])
+                # Remove the solved artifact commands
+                self.available_commands.pop(choice, None)
+                self.available_commands.pop(f"inspect artifact {artifact_number}", None)
 
-            elif choice == "solve main artifact riddle":
-                answer = input("Enter answer for the main artifact riddle: ").lower().strip()
-                if answer == self.available_commands["solve main artifact riddle"]:
-                    print("'That is... correct! You may now have the Ancient Computer Scientist Stone.'")
-                    player.items[game._items[4].id] = game._items[4]  # Give the user the Stone
-                    self.won = True
-                    self.available_commands.pop("solve main artifact riddle", None)  # Remove after solving
-                else:
-                    print(self.lose_message)
+                # Unlock main artifact commands when all riddles are solved
+                if win_count == 6:
+                    self.available_commands.update(main_artifact_commands)
+            else:
+                player.remaining_turns -= 1
+                print(self.messages[1])
+
+        return win_count
+
+    def handle_main_artifact(self, choice: str, player: Player, game: AdventureGame) -> None:
+        """Handles interactions with the main artifact."""
+
+        if choice == "inspect main artifact":
+            print(self.available_commands["inspect main artifact"])
+
+        elif choice == "solve main artifact riddle":
+            answer = input("Enter answer for the main artifact riddle: ").lower().strip()
+            if answer == self.available_commands["solve main artifact riddle"]:
+                print("'That is... correct! You may now have the Ancient Computer Scientist Stone.'")
+                player.items[game.items[4].id] = game.items[4]  # Give the user the Stone
+                self.won = True
+                self.available_commands.pop("solve main artifact riddle", None)
+            else:
+                print(self.messages[1])
 
     def pokemon_battle(self, game: AdventureGame, player: Player) -> None:
         """Initializes and plays through the Pokemon Battle Puzzle, a simple puzzle."""
-        print(self.description)
+        print(self.information[1])
         while not self.won:
             print("Your options are:")
             for action in self.available_commands:
@@ -321,10 +317,10 @@ class Puzzle:
                 print(self.available_commands["run"])
 
             if not self.won:
-                print(self.lose_message)
+                print(self.messages[1])
 
-        print(self.win_message)
-        player.items[game._items[3].id] = game._items[3]  # Give the user the G-Fuel
+        print(self.messages[0])
+        player.items[game.items[3].id] = game.items[3]  # Give the user the G-Fuel
 
     def tenjack(self, game: AdventureGame, player: Player) -> None:
         """Initializes and plays through the Tenjack Puzzle."""
@@ -340,12 +336,12 @@ class Puzzle:
             print(self.available_commands['hit'], hand[-1])
             print('You have:', sum(hand))
 
-        print(self.description)
+        print(self.information[1])
         hit(cards, player_hand)  # For the initial card given
         while not stand:
             if sum(player_hand) > 21:
                 print('Your hand is over 21, therefore, you bust.')
-                print(self.lose_message)
+                print(self.messages[1])
                 return
 
             print("Your options are:")
@@ -357,8 +353,8 @@ class Puzzle:
             if choice == "cheatcode":  # Since this game has randomness, add a cheatcode so it can be won with 1 go
                 player.remaining_turns -= 1
                 print("Hello TA. You have used the cheatcode to bypass the Tenjack Puzzle. Congrats!")
-                print(self.win_message)
-                player.items[game._items[2].id] = game._items[2]
+                print(self.messages[0])
+                player.items[game.items[2].id] = game.items[2]
                 self.won = True
                 return
 
@@ -380,26 +376,28 @@ class Puzzle:
         print('The dealer has a', dealer_hand)
         if sum(player_hand) > dealer_hand:
             player.remaining_turns -= 1
-            print(self.win_message)
-            player.items[game._items[2].id] = game._items[2]
+            print(self.messages[0])
+            player.items[game.items[2].id] = game.items[2]
             self.won = True
         elif sum(player_hand) < dealer_hand:
             player.remaining_turns -= 1
-            print(self.lose_message)
+            print(self.messages[1])
         else:
             player.remaining_turns -= 1
             print("'Tie, you have to play me again.'")
 
     def ddakji(self, player: Player) -> None:
         """Initializes and plays through the Ddakji Puzzle."""
-        power = 'low'
-        hand = 'right'
-        side = 'up'
 
-        print(self.description)
+        state = {
+            'power': 'low',
+            'hand': 'right',
+            'side': 'up'
+        }
+
+        print(self.information[1])
 
         while not self.won:
-
             print("Your options are:")
             for action in self.available_commands:
                 print("-", action)
@@ -412,30 +410,43 @@ class Puzzle:
             if choice == 'quit':
                 return
 
-            print(self.available_commands[choice])
-            if choice == 'current form':
-                print(self.available_commands[choice], [power, hand, side])
-            elif choice == "set low power":
-                power = 'low'
-            elif choice == "set high power":
-                power = 'high'
-            elif choice == "set right hand":
-                hand = 'right'
-            elif choice == "set left hand":
-                hand = 'left'
-            elif choice == "set side up":
-                side = 'up'
-            elif choice == "set side down":
-                side = 'down'
-            elif choice == "throw":
-                if power == 'high' and hand == "right" and side == "down":
-                    player.remaining_turns -= 1
-                    self.won = True
-                    print(self.available_commands[choice], self.win_message)
-                else:
-                    player.remaining_turns -= 1
-                    print(self.lose_message)
-                    return
+            # Handle choice
+            self.handle_ddakji_choice(choice, player, state)
+
+    def handle_ddakji_choice(self, choice: str, player: Player, state: dict) -> None:
+        """Handles the player's choice in the Ddakji puzzle."""
+
+        print(self.available_commands[choice])
+
+        if choice == 'current form':
+            print(self.available_commands[choice], [state['power'], state['hand'], state['side']])
+
+        elif choice.startswith("set "):
+            self.update_ddakji_state(choice, state)
+
+        elif choice == "throw":
+            self.evaluate_throw(player, state)
+
+    def update_ddakji_state(self, choice: str, state: dict) -> None:
+        """Updates the Ddakji game state based on user input."""
+
+        if "power" in choice:
+            state['power'] = 'high' if "high" in choice else 'low'
+        elif "hand" in choice:
+            state['hand'] = 'left' if "left" in choice else 'right'
+        elif "side" in choice:
+            state['side'] = 'down' if "down" in choice else 'up'
+
+    def evaluate_throw(self, player: Player, state: dict) -> None:
+        """Evaluates the outcome of the throw."""
+
+        if state['power'] == 'high' and state['hand'] == "right" and state['side'] == "down":
+            player.remaining_turns -= 1
+            self.won = True
+            print(self.available_commands["throw"], self.messages[0])
+        else:
+            player.remaining_turns -= 1
+            print(self.messages[1])
 
 
 @dataclass
@@ -471,9 +482,9 @@ class Player:
 
 
 if __name__ == "__main__":
-    pass
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 120,
-    #     'disable': ['R1705', 'E9998', 'E9999']
-    # })
+    # pass
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120,
+        'disable': ['R1705', 'E9998', 'E9999']
+    })
