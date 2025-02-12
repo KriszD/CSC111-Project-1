@@ -258,7 +258,7 @@ if __name__ == "__main__":
         location = game.get_location()
         location.conditions(player, game.puzzles)
 
-        if game.current_location_id != last_location_id:
+        if game.current_location_id != last_location_id:  # Don't repeat description if they didn't move
             print("You are now at:", location.information[0])
             if not location.visited:
                 print(location.information[1])  # Brief description on first visit
@@ -284,17 +284,6 @@ if __name__ == "__main__":
         new_event = Event(location.id, location.information[2], choice)
         game_log.add_event(new_event)
 
-        # If the user wants to undo, revert immediately.
-        if choice == 'undo':
-            if len(state_history) > 1:
-                state_history.pop()  # Remove the snapshot for the current state.
-                game.load_game_state(state_history[-1], player, game_log)
-                print("Undid the last move.")
-                continue
-            else:
-                print("No moves to undo.")
-                continue
-
         if choice in menu:
             if choice == "log":
                 game_log.display_events()
@@ -306,6 +295,15 @@ if __name__ == "__main__":
                 game.combine(player)
             elif choice == 'turns':
                 print(player.remaining_turns)
+            elif choice == 'undo':
+                if len(state_history) > 1:
+                    state_history.pop()  # Remove the snapshot for the current state.
+                    game.load_game_state(state_history[-1], player, game_log)
+                    print("Undid the last move.")
+                    continue
+                else:
+                    print("No moves to undo.")
+                    continue
             elif choice == 'score':
                 print("Your score is:", sum([item.status for item in game.items if item.status is True]), "out of 5")
             elif choice == 'quit':
@@ -321,7 +319,7 @@ if __name__ == "__main__":
                 if choice == 'charge laptop':
                     player.items[2].status = True
                 elif choice == 'take subway':
-                    pass
+                    pass  # The available commands will move them using the TTC
                 elif choice == 'return stone':
                     player.items[5].status = True
                     player.items.pop(5)
@@ -341,7 +339,7 @@ if __name__ == "__main__":
                 elif choice == 'play ddakji':
                     game.puzzles[4].ddakji(player)
 
-        state_history.append(game.save_game_state(player, game_log))
+        state_history.append(game.save_game_state(player, game_log))  # Log the game state for undoing purposes
 
         if player.remaining_turns <= 0:
             print("You ran out of turns. Your score was:",

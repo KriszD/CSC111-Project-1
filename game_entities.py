@@ -329,7 +329,7 @@ class Puzzle:
         stand = False
 
         def hit(cards: list[int], hand: list[int]) -> None:
-            """Gives the play an additional card."""
+            """Gives the player an additional card."""
             card = random.choice(cards)
             hand.append(card)
             cards.remove(card)
@@ -374,16 +374,14 @@ class Puzzle:
 
         dealer_hand = random.randint(15, 21)
         print('The dealer has a', dealer_hand)
+        player.remaining_turns -= 1
         if sum(player_hand) > dealer_hand:
-            player.remaining_turns -= 1
             print(self.messages[0])
             player.items[game.items[2].id] = game.items[2]
             self.won = True
         elif sum(player_hand) < dealer_hand:
-            player.remaining_turns -= 1
             print(self.messages[1])
         else:
-            player.remaining_turns -= 1
             print("'Tie, you have to play me again.'")
 
     def ddakji(self, player: Player) -> None:
@@ -482,7 +480,6 @@ class Player:
 
 
 if __name__ == "__main__":
-    # pass
     import python_ta
     python_ta.check_all(config={
         'max-line-length': 120,
