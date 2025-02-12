@@ -4,7 +4,7 @@
       "id": 1,
       "name": "John P. Robarts Research Library, Floor 14",
       "brief_description": "After a long elevator ride, you arrive on the 14th floor of Robarts. The floor is filled with students cramming for their midterms, and there is not even one single seat available.",
-      "long_description": "After a long journey, you finally reach the 14th floor. When you open the door, the overwhelming sound of silence hits you. It is perfectly silent, not even one person talking. Every seat is taken, and everyone is working on their tablets and laptops, clearly studying for their midterms. You gaze outside and you see the whole of the UofT campus, you know all your items are out there, ready for you to find. You walk around on your tiptoes, so as to not make even a single sound. As you walk around, you see many outlets both on the tables, as well as on the walls, where many students are charging their devices to keep their grind going.",
+      "long_description": "After a long journey, you finally reach the 14th floor. When you open the door, the overwhelming sound of silence hits you. It is perfectly silent, not even one person talking. Every seat is taken, and everyone is working on their tablets and laptops, clearly studying for their midterms. You gaze outside and you see the whole of the UofT campus, you know all your items are out there, ready for you to find. You walk around on your tiptoes, to not make even a single sound. As you walk around, you see many outlets both on the tables, as well as on the walls, where many students are charging their devices to keep their grind going.",
       "available_commands": {
         "go south": 4,
         "go east": 2,
@@ -41,8 +41,8 @@
     {
       "id": 4,
       "name": "CSSU Lounge",
-      "brief_description": "You enter the CSSU Lounge in Bahen, a small room where some people are discussing the intracacies of the Java vs. C++ debate. There is a vending machine filled with goodies, and a TV with some people playing in a Pokemon battle.",
-      "long_description": "You enter the CSSU Lounge in Bahen. You overhear shouts in this small room. 'Java Enthusiast: Platform-independence is important!', 'C++ Enthusiast: Sure, have your platform-whatever, but at least I'll rest easy knowing that C++ will outrun your Java 15 times over. Java would be eligble to file taxes by the time its able to actually compile.', 'Java Enthusiast: Sure pal, speed. But how about the real world? What is used everywhere buddy? Yeah, that's right, Java.', 'Somebody in the Corner: Python's pretty good too...', there is silence in the room. You notice vending machines full of delicious snacks, energy drinks, and even your project partner's favourite drink, G Fuel.",
+      "brief_description": "You enter the CSSU Lounge in Bahen, a small room where some people are discussing the intricacies of the Java vs. C++ debate. There is a vending machine filled with goodies and a TV with some people playing in a Pokemon battle.",
+      "long_description": "You enter the CSSU Lounge in Bahen. You overhear shouts in this small room. 'Java Enthusiast: Platform-independence is important!', 'C++ Enthusiast: Sure, have your platform... whatever, but at least I'll rest easy knowing that C++ will outrun your Java 15 times over. Java would be eligible to file taxes by the time it can compile.', 'Java Enthusiast: Sure pal, speed. But how about the real world? What is used everywhere, buddy? Yeah, that's right, Java.', 'Somebody in the Corner: Python's pretty good too...', there is silence in the room. You notice vending machines full of delicious snacks, energy drinks, and even your project partner's favourite drink, G Fuel.",
       "available_commands": {
         "go north": 1,
         "go south": 7,
@@ -56,7 +56,7 @@
       "id": 5,
       "name": "That One Little Coffee Stand At the Bottom of King's College Circle Near the Entrance to the Medical Sciences Building",
       "brief_description": "On your way to the Medsci Building to see if you left one of your items in your CS lecture room, you notice that one little coffee stand at the bottom of King's College Circle near the building's entrance. There are people in line for coffees, and people behind it gambling.",
-      "long_description": "On your way to the Medsci Building to see if you left one of your items in your CS lecture room, you notice that one little coffee stand at the bottom of King's College Circle near the building's entrance, the same one you always overlook while you walk between classes. You could really go for a coffee right now, but thats not the point here... Although, a coffee could really help you find all your items... But alas, we should not get distracted, it might take a while to wait in line after all... But you already budgeted todays evening coffee into your planner, you owe it to yourself! No. Don't drink a coffee, you need to find your stuff. Anyways... while there are a few customers waiting in line for their steaming hot coffees in the Canadian winter, you notice something else. Behind the cart is what seems to be a small-scale gambling operation, with some individuals playing card games.",
+      "long_description": "On your way to the Medsci Building to see if you left one of your items in your CS lecture room, you notice that one little coffee stand at the bottom of King's College Circle near the building's entrance, the same one you always overlook while you walk between classes. You could really go for a coffee right now, but that's not the point here... Although, a coffee could really help you find all your items... But alas, we should not get distracted, it might take a while to wait in line after all... But you already budgeted today's evening coffee into your planner, you owe it to yourself! No. Don't drink a coffee, you need to find your stuff. Anyways... while there are a few customers waiting in line for their steaming hot coffees in the Canadian winter, you notice something else. Behind the cart is what seems to be a small-scale gambling operation, with some individuals playing card games.",
       "available_commands": {
         "go north": 2,
         "go south": 8,
@@ -69,8 +69,8 @@
     {
       "id": 6,
       "name": "Queens Park",
-      "brief_description": "You enter Queens Park, a large park right in the heart of UofT. You are in the northern section and can see the Legislative Building in the distance. Many people are walking around, making the snowy paths dirty, which have now caused your shoes to be soggy. You have now have soggy shoes, and they will get more soggy should you try and leave the park.",
-      "long_description": "You enter Queens Park, a large park right in the heart of UofT. You find yourself right in the northern park next to the fountain. In the distance, you can see the Legislative Building, and many cars driving around the park. You see various paths leading off to different areas, such as the main campus, and Victoria College. There are many students walking around, some running even, perhaps they are late for class. As you walk through the park, your shoes start getting soggy from all the snow on the path, now turned into slush from all the dirt. Should you wish to leave, the park, you will have to exit through the slush as well. No matter what you do, your shoes will be wet from now on.",
+      "brief_description": "You enter Queens Park, a large park right in the heart of UofT. You are in the northern section and can see the Legislative Building in the distance. Many people are walking around, making the snowy paths dirty, which has now caused your shoes to be soggy. You now have soggy shoes, and they will get more soggy should you try and leave the park.",
+      "long_description": "You enter Queens Park, a large park right in the heart of UofT. You find yourself right in the northern park next to the fountain. In the distance, you can see the Legislative Building, and many cars driving around the park. You see various paths leading off to different areas, such as the main campus, and Victoria College. Many students are walking around, some running even, perhaps they are late for class. As you walk through the park, your shoes start getting soggy from all the snow on the path, now turned into slush from all the dirt. Should you wish to leave, the park, you will have to exit through the slush as well. No matter what you do, your shoes will be wet from now on.",
       "available_commands": {
         "go north": 3,
         "go south": 9,
@@ -81,8 +81,8 @@
     {
       "id": 7,
       "name": "UofT Bookstore",
-      "brief_description": "You arrive at the UofT Bookstore. As you walk around the store you see various types of merchandise, plushies, notebooks, etc. You remind yourself of another elective you forgot to buy a textbook for, but… you know that wont end well, so you don’t bother. It seems like there is not much going on here at the moment.",
-      "long_description": "You arrive at the UofT Bookstore. The place has quite a few people strolling around the aisles, and as you walk around you see various types of merchandise, from OVO collaborations to sweaters that say UofT mom. As you continue to travel around the store, you make your way up to the actual section with all the books… then, you remember, that you never bought that one textbook your were supposed to buy for your elective this semester! Quickly you go look for it and manage to find it… '$500!?', you say. It seems like you will be dropping another course this semester. You decide to leave, but on your way out you find what seems to look like… your USB, being sold in the tech section behind the cashier! 'Hey, thats my USB!', you tell the cashier. 'Really? Let me look.', he replies. He wanders over to the item, and lifts it up, reading the name of the product: 'The Player's USB, oh, that must be you. You can have it if you want.', he says as he places your USB on the desk.",
+      "brief_description": "You arrive at the UofT Bookstore. As you walk around the store you see various types of merchandise, plushies, notebooks, etc. You remind yourself of another elective you forgot to buy a textbook for, but… you know that won't end well, so you don’t bother. It seems like there is not much going on here at the moment.",
+      "long_description": "You arrive at the UofT Bookstore. The place has quite a few people strolling around the aisles, and as you walk around you see various types of merchandise, from OVO collaborations to sweaters that say UofT mom. As you continue to travel around the store, you make your way up to the actual section with all the books… then, you remember, that you never bought that one textbook you were supposed to buy for your elective this semester! Quickly you go look for it and manage to find it… '$500!?', you say. It seems like you will be dropping another course this semester. You decide to leave, but on your way out you find what seems to look like… your USB, being sold in the tech section behind the cashier! 'Hey, that's my USB!', you tell the cashier. 'Really? Let me look.', he replies. He wanders over to the item, and lifts it, reading the name of the product: 'The Player's USB, oh, that must be you. You can have it if you want.', he says as he places your USB on the desk.",
       "available_commands": {
         "go north": 4,
         "go east": 8,
@@ -94,9 +94,9 @@
       "id": 8,
       "name": "Health Sciences Building, Room 610",
       "brief_description": "You walk into Room 610 in the Health Sci Building in the middle of a lecture. It's quite dark in the room, so you can't quite make out what they are learning about. Everyone stares at you as the door closes behind you.",
-      "long_description": "You walk into Room 610 in the Health Sci Building. You enter a dark lecture room. Everyone stares at you as the door closes behind you. You look up at whats being projected on the whiteboard. Its a simple math problem. donut + donut + donut = 15, donut * banana = 60, coconut = ?. The professor sees you and says: 'You, whats the answer to this problem?'. In the corner of your eye you see your Laptop Charger which you left here earlier today. If you use the shadows to your advantage, maybe you can grab your Laptop Charger and make it out without them seeing.",
+      "long_description": "You walk into Room 610 in the Health Sci Building. You enter a dark lecture room. Everyone stares at you as the door closes behind you. You look up at what's being projected on the whiteboard. It's a simple math problem. donut + donut + donut = 15, donut * banana = 60, coconut = ?. The professor sees you and says: 'You, what's the answer to this problem?'. In the corner of your eye, you see your Laptop Charger which you left here earlier today. If you use the shadows to your advantage, maybe you can grab your Laptop Charger and make it out without them seeing.",
       "available_commands": {
-        "go north": 6,
+        "go north": 5,
         "go west": 7,
         "go east": 9,
         "pickup laptop charger": 8
@@ -107,7 +107,7 @@
       "id": 9,
       "name": "Queens Park Subway Station",
       "brief_description": "You enter Queens Park Subway Station and are forced to wait quite a long time due to the sheer amount of people coming up the stairs. The next Northbound Subway Car is arriving in around 10 minutes, so you will be waiting quite a while.",
-      "long_description": "You find the entrance to Queens Park Subway Station and head down. You tap your presto card and make your way towards the staircase, and you stand there, and wait, and wait, and wait, and wait, and keep waiting as people just keep on coming up the stairs. After about 10 minutes you make your way down onto the platform to see that the next train going Northbound is scheduled to arrive in 10 minutes (How's that possible?). Regardless of where you plan to go, you'll definitely be waiting for a little while.",
+      "long_description": "You find the entrance to Queens Park Subway Station and head down. You tap your presto card and make your way towards the staircase, and you stand there and wait, and wait, and wait, and wait, and keep waiting as people just keep on coming up the stairs. After about 10 minutes you make your way down onto the platform to see that the next train going Northbound is scheduled to arrive in 10 minutes (How's that possible?). Regardless of where you plan to go, you'll be waiting for a little while.",
       "available_commands": {
         "go north": 6,
         "go west": 8,
@@ -121,41 +121,36 @@
     {
       "id": 1,
       "name": "USB",
-      "description": "The USB which all your Project 1 files are backed up on. Like any good Computer Science student, you would never have a backup on your cloud, so you need this USB to submit your project. It's a 1 terabyte USB, so it's pretty dang large... not exactly sure how you forgot it somewhere.",
+      "description": "The USB on which all your Project 1 files are backed up. Like any good Computer Science student, you would never have a backup on your cloud, so you need this USB to submit your project. It's a 1 terabyte USB, so it's pretty dang large... not exactly sure how you forgot it somewhere.",
       "status": false,
-      "start_position": 7,
       "combination": null
     },
     {
       "id": 2,
       "name": "Laptop Charger",
-      "description": "Your trusty old Laptop Charger thats been powering your laptop for years. You always plug it into the wall during your lectures to create a mini-limbo in the aisles of the lecture seats, so its quite surprising you forgot it somewhere. Your laptop died this morning before you took a nap, so it needs to be charged in order to finally submit your Project 1.",
+      "description": "Your trusty old Laptop Charger that's been powering your laptop for years. You always plug it into the wall during your lectures to create a mini-limbo in the aisles of the lecture seats, so it's quite surprising you forgot it somewhere. Your laptop died this morning before you took a nap, so it needs to be charged to finally submit your Project 1.",
       "status": false,
-      "start_position": 8,
       "combination": null
     },
     {
       "id": 3,
       "name": "Lucky Mug",
-      "description": "The mug your parents gave you as you moved in to your dorm for your first year of university. On it, it says 'Good luck, you're going to crush it! (But call your parents, okay?)'. You've been using this mug throughout the whole school year so far and always bring it with you whenever you're about to write a test. That must be why you left it at That One Little Coffee Stand At the Bottom of King's College Circle Near the Entrance to the Medical Sciences Building",
+      "description": "The mug your parents gave you as you moved into your dorm for your first year of university. On it, it says 'Good luck, you're going to crush it! (But call your parents, okay?)'. You've been using this mug throughout the whole school year so far and always bring it with you whenever you're about to write a test. That must be why you left it at That One Little Coffee Stand At the Bottom of King's College Circle Near the Entrance to the Medical Sciences Building",
       "status": false,
-      "start_position": 5,
       "combination": "G Fuel"
     },
     {
       "id": 4,
       "name": "G Fuel",
-      "description": "The ultimate drink for any gamer/Computer Science student, not because the G stands for Computer Science (because it actually stands for Gallina which is Latin for chicken, the secret ingredient in G-Fuel), but because of the sheer sustinance it provides to all individuals that spend their time in front of a computer. Like any good Computer Science Student Union, they had it ready for purchase.",
+      "description": "The ultimate drink for any gamer/Computer Science student, not because the G stands for Computer Science (because it actually stands for Gallina which is Latin for chicken, the secret ingredient in G-Fuel), but because of the sheer sustenance it provides to all individuals that spend their time in front of a computer. Like any good Computer Science Student Union, they had it ready for purchase.",
       "status": false,
-      "start_position": 4,
       "combination": "Lucky Mug"
     },
     {
       "id": 5,
       "name": "Ancient Computer Scientist Stone",
-      "description": "A glowing stone that resonates with you. If you listen closely, it whispers 'JavaScript may be a language, but it's certainly not a good one'. Out of curiosity, you listen again, it says: 'Every loop has its break, every tree its root, every function its return'. It seems... all knowing, like it holds all the truths of Computer Science within it. If you look on the bottom of it, it says 'Property of the Computer Science Student Union'.",
+      "description": "A glowing stone that resonates with you. If you listen closely, it whispers 'JavaScript may be a language, but it's certainly not a good one'. Out of curiosity, you listen again, it says: 'Every loop has its break, every tree its root, every function its return'. It seems... all-knowing like it holds all the truths of Computer Science within it. If you look at the bottom of it, it says 'Property of the Computer Science Student Union'.",
       "status": false,
-      "start_position": 3,
       "combination": null
     }
   ],
@@ -163,7 +158,7 @@
     {
       "id": 1,
       "name": "ROM Podiums",
-      "description": "As you stand in the room, you feel its aura. It feels as though there is an otherworldly being in the room with you, speaking through the walls. It whispers to you, and although you don't hear it as sound, you somehow can understand the message... 'It's me, John Computer Science... if you wish to acquire the Ancient Computer Scientist Stone, you must prove yourself worthy. To obtain thee, answer these riddles... six. Each riddle will be about Computer Science, and will be a one word answer. If you can answer all six riddles, and defeat the final main riddle after, you can have the stone. Warning, I have seen many try, and all fail, so good luck to you.",
+      "description": "As you stand in the room, you feel its aura. It feels as though there is an otherworldly being in the room with you, speaking through the walls. It whispers to you, and although you don't hear it as sound, you somehow can understand the message... 'It's me, John Computer Science... if you wish to acquire the Ancient Computer Scientist Stone, you must prove yourself worthy. To obtain thee, answer these riddles... six. Each riddle will be about Computer Science and will be a one-word answer. If you can answer all six riddles, and defeat the final main riddle after, you can have the stone. Warning, I have seen many try, and all fail, so good luck to you.",
       "available_commands": {
         "inspect artifact 1":  "Ask me to, and repeat I shall. In iterating, consider me your best pal.",
         "solve artifact 1 riddle":  "loop",
@@ -177,8 +172,9 @@
         "solve artifact 5 riddle":  "recursion",
         "inspect artifact 6":  "From root to branch, I spread so wide, that the farther you go, the harder to find my side.",
         "solve artifact 6 riddle":  "tree",
-        "inspect main artifact":  "I am a quite complex password. Guess me? You can’t. 4 ordered numbers, I definitely am not.",
-        "solve main artifact riddle":  "1234"
+        "inspect main artifact":  "I am a quite complex password. Guess me? You cannot. 4 ordered numbers, I definitely am not.",
+        "solve main artifact riddle":  "1234",
+        "quit": ""
       },
       "win_message": "That is correct. You continue to prove you are worthy of the stone.",
       "lose_message": "Unfortunately, that is an incorrect answer. It seems the stone does not speak to you."
@@ -186,14 +182,15 @@
     {
       "id": 2,
       "name": "Pokemon Battle",
-      "description": "Unfortunately, you realize that you don't have your wallet on you. 'Can anybody spare a few bucks?', you ask. 'Sure, if you help with this Pokemon battle', someone replies. 'All you have to do is win this battle for me. I've been stuck on it for DAYS!' So, heres the situation. I have an Infernape who is fighting a Gyrados. My Infernape, a fire-fighting type, is at 1hp, and the Gyrados, a water-flying type, is at max hp. You need to find the correct move that will one-shot this Gyrados. You have four attacks you can use, and one of them should be the correcto one.",
+      "description": "Unfortunately, you realize that you don't have your wallet on you. 'Can anybody spare a few bucks?', you ask. 'Sure, if you help with this Pokemon battle', someone replies. 'All you have to do is win this battle for me. I've been stuck on it for DAYS!' So, here's the situation. I have an Infernape who is fighting a Gyrados. My Infernape, a fire-fighting type, is at 1hp, and the Gyrados, a water-flying type, is at max hp. You need to find the correct move that will one-shot this Gyrados. You have four attacks you can use, and one of them should be the correct one.",
       "available_commands": {
         "flamethrower": "Infernape puts its hand together and shoots a large beam of fire towards Gyrados... it deals 5 damage. Gyrados immediately counters with Waterfall, and Infernape passes out",
         "close combat": "Infernape gets in its fighting stance and begins to punch Gyrados at a ludicrous speed... it deals 5 damage. Gyrados immediately counters with Waterfall, and Infernape passes out",
         "thunder punch": "Infernape harnesses its electric power into its fist and unleashes a powerful punch right in Gyrados' forehead. Gyrados immediately passes out, and Infernape is victorious.",
         "earthquake": "Infernape smashes its fist into the ground causing a massive earthquake that makes it all the way to Gyrados... but Gyrados is literally flying and takes no damage. Gyrados immediately counters with Waterfall, and Infernape passes out.",
         "bag": "Your bag is empty.",
-        "run": "Nice try pal."
+        "run": "Nice try pal.",
+        "quit": ""
       },
       "win_message": "'Yes! Thank you so much. Here's your money, spend it wisely Pokemon Trainer.' You walk to the vending machine, punch in the code G4, and out comes your G Fuel. You now have G Fuel!",
       "lose_message": "'NO! Please, you've got to try again. I've set you back to the same encounter, you need to win this time.'"
@@ -201,10 +198,11 @@
     {
       "id": 3,
       "name": "Tenjack",
-      "description": "You notice that among the items being gambled on the tables, your Lucky Mug is one of the items in the middle. 'Hey, that's my Lucky Mug!', you say. The gamblers turn and look at you, and slowly hide their cards. 'Ever heard of finders keepers?, says one of the gamblers. 'You left your mug here that one time you bought coffee and asked the shop owners to fill it up, but then you ran away because you forgot you had a test next period. As shopowners do, they gave it to us to gamble with. If you want your mug back, you are gonna have to beat me in a game of blacjack.'",
+      "description": "You notice that among the items being gambled on the tables, your Lucky Mug is one of the items in the middle. 'Hey, that's my Lucky Mug!', you say. The gamblers turn and look at you, and slowly hide their cards. 'Ever heard of finders keepers? says one of the gamblers. 'You left your mug here that one time you bought coffee and asked the shop owners to fill it up, but then you ran away because you forgot you had a test next period. As shopowners do, they gave it to us to gamble with. If you want your mug back, you are gonna have to beat me in a game of tenjack. Tenjack is like blackjack, except each player gets 10 cards, and suits don't matter, so there are no repeats. You have to get as close to 21, but if you go over you bust... just so you know, I invented this game, and I'm so good at it that I'll let you play me as many times as you want, and if you can even beat me once, you can get your mug back.'",
       "available_commands": {
-        "hit":  "Hit! You receive a ",
-        "stand":  "You stand on  "
+        "hit":  "Hit! You receive a",
+        "stand":  "You stand on",
+        "quit": ""
       },
       "win_message": "Alright, you won fair and square. You can have your mug back.",
       "lose_message": "'Well, look's like you lose. Nice try though, I'll make sure to put this mug to good use... unless you want a rematch, that is?'"
@@ -212,10 +210,10 @@
     {
       "id": 4,
       "name": "Ddakji",
-      "description": "As the people who just arrived fan out, you realize you are completely alone in the subway station, there are no longer any people here. Except, there is one person, a man with a briefcase sitting on a bench. He looks at you and greets you. 'Hello, would you like to play a game?', he asks. He sees you are hesistant, and says, 'You know you this is just a game right? Like, you are in a text adventure game, this isn't a horror movie. You don't need to be scared. Anyways, if you beat me in this game, you will unlock the ability to travel between St. George station, and Queens Park station as you please, at the cost of only 1 turn. The game is simple, its Ddakji, the Korean game where you try and flip over your opponents envelope by throwing your own envelope at it. Heres your envelope, try and flip mine over. Adjust your settings before you actually throw it, otherwise this might not go so well for you. By default, your power is set to low, you are using your right hand, and you are holding the envelope with the opening down.' As he finishes speaking, you see an influx of interesting looking people enter the subway station. You also notice there are so many interesting things to look at on the walls, ceilings, etc.",
+      "description": "As the people who just arrived fan out, you realize you are completely alone in the subway station, there are no longer any people here. Except, there is one person, a man with a briefcase sitting on a bench. He looks at you and greets you. 'Hello, would you like to play a game?', he asks. He sees you are hesitant, and says, 'You know you this is just a game right? Like, you are in a text adventure game, this isn't a horror movie. You don't need to be scared. Anyways, if you beat me in this game, you will unlock the ability to travel between St. George station, and Queens Park station as you please. The game is simple, it's Ddakji, the Korean game where you try and flip over your opponent's envelope by throwing your envelope at it. Here's your envelope, try and flip mine over. Adjust your settings before you throw it, otherwise this might not go so well for you. By default, your power is set to low, you are using your right hand, and you are holding the envelope with the opening down.' As he finishes speaking, you see an influx of interesting-looking people enter the subway station. You also notice there are so many interesting things to look at on the walls, ceilings, etc.",
       "available_commands": {
         "observe tv": "You look up at the TV which is playing the news; the forecast says there is a high chance of snow tomorrow morning.",
-        "read poster": "You read a poster on the wall, its an advertisement for a podcast called 'In the Loop'... seems interesting.",
+        "read poster": "You read a poster on the wall, it is an advertisement for a podcast called 'In the Loop'... seems interesting.",
         "observe athlete": "You see a dude wearing a Blue Jays jersey with 'Paul Quantrill' on the back, fidgetting with a baseball in his right hand. He must be heading to the Blue Jays game.",
         "eavesdrop": "You overhear two businessmen talking. 'Yes, yes, the profit margins are very bad, I need to contact the JCK and ask for the QWP to get the RFL going.', he says. You have no idea what any of that means.",
         "observe book": "You look over to your right and see a person sitting on a bench. Everything seems quite normal with them, other than the fact that the book they are reading, is upside down.",
@@ -226,10 +224,11 @@
         "set left hand": "You adjust your envelope to be in your left hand.",
         "set side up":  "You adjust your envelope to be face up",
         "set side down": "You adjust your envelope to be face down",
-        "throw": "You throw your envelope at the one on the floor."
+        "throw": "You throw your envelope at the one on the floor.",
+        "quit": ""
       },
       "win_message": "The envelope strikes the other, flipping it over instantly. 'Congratulations, you have won this game. By the power vested in me, by the Toronto Transit Commission, you may now utilize the subways running between St. George and Queens Park Station.'",
-      "lose_message": "Your envelope hits the other, and the one on the floor barely moves. 'It's quite the difficult game, isn't it? The ability to travel between stations is a great asset, however, as they say, you should not spend all your money in one place... which in this case your money is your turn count...'"
+      "lose_message": "Your envelope hits the other, and the one on the floor barely moves. 'It's quite a difficult game, isn't it? The ability to travel between stations is a great asset, however, as they say, you should not spend all your money in one place... which in this case your money is your turn count...'"
     }
   ]
 }
