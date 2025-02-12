@@ -1,234 +1,384 @@
-{
-  "locations": [
-    {
-      "id": 1,
-      "name": "John P. Robarts Research Library, Floor 14",
-      "brief_description": "After a long elevator ride, you arrive on the 14th floor of Robarts. The floor is filled with students cramming for their midterms, and there is not even one single seat available.",
-      "long_description": "After a long journey, you finally reach the 14th floor. When you open the door, the overwhelming sound of silence hits you. It is perfectly silent, not even one person talking. Every seat is taken, and everyone is working on their tablets and laptops, clearly studying for their midterms. You gaze outside and you see the whole of the UofT campus, you know all your items are out there, ready for you to find. You walk around on your tiptoes, to not make even a single sound. As you walk around, you see many outlets both on the tables, as well as on the walls, where many students are charging their devices to keep their grind going.",
-      "available_commands": {
-        "go south": 4,
-        "go east": 2,
-        "charge laptop": 1
-      },
-      "items": [""]
-    },
-    {
-      "id": 2,
-      "name": "St. George Subway Station",
-      "brief_description": "You enter St. George Subway Subway Station, and arrive on the Line 1 platform. The northbound subway car just left, but you see the southbound subway car arriving now, with its doors opening. You could get on, should you have access to it.",
-      "long_description": "You arrive at the St. George Subway Station. You enter from the St. George Street entrance and arrive on the Line 1 platform. You see lots of people getting off the subway car, some heading up the stairs, some heading down the stairs onto the Line 2 platform. The floors are surprisingly clean, and you smell a strong scent of lavender. 'How delicious', you think to yourself. You see the Southbound subway car arrive on the platform, and its doors are open. You could get on, should you have access to use it.",
-      "available_commands": {
-        "go south": 5,
-        "go west": 1,
-        "go east": 3,
-        "take subway": 9,
-        "play ddakji": 2
-      },
-      "items": [""]
-    },
-    {
-      "id": 3,
-      "name": "Royal Ontario Museum",
-      "brief_description": "You enter the ROM and stumble into a room full of lasers. Clearly, you shouldn't be here. In the middle, there is a podium with a large shiny crystal-looking object. It resonates with you.",
-      "long_description": "You completely forget about your project due today. You stumble around the ROM for what feels like hours, and then it hits you. I need to find my stuff! You check your phone, but it turns out that only 5 minutes have passed. 'Jeez, is this what being outside feels like?', you think to yourself. You keep looking around and eventually find a closed exhibit with a 'DO NOT ENTER' sign. Obviously, you enter, and you find a large room filled head to toe with bright red lasers which will likely sound the alarm should you touch one. In the middle of the room, a podium with a glowing stone. Its inscription says 'The Ancient Computer Scientist Stone'. Surrounding this podium, there are 6 more, each with its own artifact in it. They all have inscriptions.",
-      "available_commands": {
-        "go south": 6,
-        "go west": 2,
-        "investigate podiums": 3
-      },
-      "items": ["Ancient Computer Scientist Stone"]
-    },
-    {
-      "id": 4,
-      "name": "CSSU Lounge",
-      "brief_description": "You enter the CSSU Lounge in Bahen, a small room where some people are discussing the intricacies of the Java vs. C++ debate. There is a vending machine filled with goodies and a TV with some people playing in a Pokemon battle.",
-      "long_description": "You enter the CSSU Lounge in Bahen. You overhear shouts in this small room. 'Java Enthusiast: Platform-independence is important!', 'C++ Enthusiast: Sure, have your platform... whatever, but at least I'll rest easy knowing that C++ will outrun your Java 15 times over. Java would be eligible to file taxes by the time it can compile.', 'Java Enthusiast: Sure pal, speed. But how about the real world? What is used everywhere, buddy? Yeah, that's right, Java.', 'Somebody in the Corner: Python's pretty good too...', there is silence in the room. You notice vending machines full of delicious snacks, energy drinks, and even your project partner's favourite drink, G Fuel.",
-      "available_commands": {
-        "go north": 1,
-        "go south": 7,
-        "go east": 5,
-        "pokemon battle": 4,
-        "return stone": 4
-      },
-      "items": ["G Fuel"]
-    },
-    {
-      "id": 5,
-      "name": "That One Little Coffee Stand At the Bottom of King's College Circle Near the Entrance to the Medical Sciences Building",
-      "brief_description": "On your way to the Medsci Building to see if you left one of your items in your CS lecture room, you notice that one little coffee stand at the bottom of King's College Circle near the building's entrance. There are people in line for coffees, and people behind it gambling.",
-      "long_description": "On your way to the Medsci Building to see if you left one of your items in your CS lecture room, you notice that one little coffee stand at the bottom of King's College Circle near the building's entrance, the same one you always overlook while you walk between classes. You could really go for a coffee right now, but that's not the point here... Although, a coffee could really help you find all your items... But alas, we should not get distracted, it might take a while to wait in line after all... But you already budgeted today's evening coffee into your planner, you owe it to yourself! No. Don't drink a coffee, you need to find your stuff. Anyways... while there are a few customers waiting in line for their steaming hot coffees in the Canadian winter, you notice something else. Behind the cart is what seems to be a small-scale gambling operation, with some individuals playing card games.",
-      "available_commands": {
-        "go north": 2,
-        "go south": 8,
-        "go west": 4,
-        "go east": 6,
-        "play tenjack": 5
-      },
-      "items": ["Lucky Mug"]
-    },
-    {
-      "id": 6,
-      "name": "Queens Park",
-      "brief_description": "You enter Queens Park, a large park right in the heart of UofT. You are in the northern section and can see the Legislative Building in the distance. Many people are walking around, making the snowy paths dirty, which has now caused your shoes to be soggy. You now have soggy shoes, and they will get more soggy should you try and leave the park.",
-      "long_description": "You enter Queens Park, a large park right in the heart of UofT. You find yourself right in the northern park next to the fountain. In the distance, you can see the Legislative Building, and many cars driving around the park. You see various paths leading off to different areas, such as the main campus, and Victoria College. Many students are walking around, some running even, perhaps they are late for class. As you walk through the park, your shoes start getting soggy from all the snow on the path, now turned into slush from all the dirt. Should you wish to leave, the park, you will have to exit through the slush as well. No matter what you do, your shoes will be wet from now on.",
-      "available_commands": {
-        "go north": 3,
-        "go south": 9,
-        "go west": 5
-      },
-      "items": [""]
-    },
-    {
-      "id": 7,
-      "name": "UofT Bookstore",
-      "brief_description": "You arrive at the UofT Bookstore. As you walk around the store you see various types of merchandise, plushies, notebooks, etc. You remind yourself of another elective you forgot to buy a textbook for, but… you know that won't end well, so you don’t bother. It seems like there is not much going on here at the moment.",
-      "long_description": "You arrive at the UofT Bookstore. The place has quite a few people strolling around the aisles, and as you walk around you see various types of merchandise, from OVO collaborations to sweaters that say UofT mom. As you continue to travel around the store, you make your way up to the actual section with all the books… then, you remember, that you never bought that one textbook you were supposed to buy for your elective this semester! Quickly you go look for it and manage to find it… '$500!?', you say. It seems like you will be dropping another course this semester. You decide to leave, but on your way out you find what seems to look like… your USB, being sold in the tech section behind the cashier! 'Hey, that's my USB!', you tell the cashier. 'Really? Let me look.', he replies. He wanders over to the item, and lifts it, reading the name of the product: 'The Player's USB, oh, that must be you. You can have it if you want.', he says as he places your USB on the desk.",
-      "available_commands": {
-        "go north": 4,
-        "go east": 8,
-        "pickup usb": 7
-      },
-      "items": ["USB"]
-    },
-    {
-      "id": 8,
-      "name": "Health Sciences Building, Room 610",
-      "brief_description": "You walk into Room 610 in the Health Sci Building in the middle of a lecture. It's quite dark in the room, so you can't quite make out what they are learning about. Everyone stares at you as the door closes behind you.",
-      "long_description": "You walk into Room 610 in the Health Sci Building. You enter a dark lecture room. Everyone stares at you as the door closes behind you. You look up at what's being projected on the whiteboard. It's a simple math problem. donut + donut + donut = 15, donut * banana = 60, coconut = ?. The professor sees you and says: 'You, what's the answer to this problem?'. In the corner of your eye, you see your Laptop Charger which you left here earlier today. If you use the shadows to your advantage, maybe you can grab your Laptop Charger and make it out without them seeing.",
-      "available_commands": {
-        "go north": 5,
-        "go west": 7,
-        "go east": 9,
-        "pickup laptop charger": 8
-      },
-      "items": ["Laptop Charger"]
-    },
-    {
-      "id": 9,
-      "name": "Queens Park Subway Station",
-      "brief_description": "You enter Queens Park Subway Station and are forced to wait quite a long time due to the sheer amount of people coming up the stairs. The next Northbound Subway Car is arriving in around 10 minutes, so you will be waiting quite a while.",
-      "long_description": "You find the entrance to Queens Park Subway Station and head down. You tap your presto card and make your way towards the staircase, and you stand there and wait, and wait, and wait, and wait, and keep waiting as people just keep on coming up the stairs. After about 10 minutes you make your way down onto the platform to see that the next train going Northbound is scheduled to arrive in 10 minutes (How's that possible?). Regardless of where you plan to go, you'll be waiting for a little while.",
-      "available_commands": {
-        "go north": 6,
-        "go west": 8,
-        "take subway": 2,
-        "play ddakji": 9
-      },
-      "items": [""]
-    }
-  ],
-  "items": [
-    {
-      "id": 1,
-      "name": "USB",
-      "description": "The USB on which all your Project 1 files are backed up. Like any good Computer Science student, you would never have a backup on your cloud, so you need this USB to submit your project. It's a 1 terabyte USB, so it's pretty dang large... not exactly sure how you forgot it somewhere.",
-      "status": false,
-      "combination": null
-    },
-    {
-      "id": 2,
-      "name": "Laptop Charger",
-      "description": "Your trusty old Laptop Charger that's been powering your laptop for years. You always plug it into the wall during your lectures to create a mini-limbo in the aisles of the lecture seats, so it's quite surprising you forgot it somewhere. Your laptop died this morning before you took a nap, so it needs to be charged to finally submit your Project 1.",
-      "status": false,
-      "combination": null
-    },
-    {
-      "id": 3,
-      "name": "Lucky Mug",
-      "description": "The mug your parents gave you as you moved into your dorm for your first year of university. On it, it says 'Good luck, you're going to crush it! (But call your parents, okay?)'. You've been using this mug throughout the whole school year so far and always bring it with you whenever you're about to write a test. That must be why you left it at That One Little Coffee Stand At the Bottom of King's College Circle Near the Entrance to the Medical Sciences Building",
-      "status": false,
-      "combination": "G Fuel"
-    },
-    {
-      "id": 4,
-      "name": "G Fuel",
-      "description": "The ultimate drink for any gamer/Computer Science student, not because the G stands for Computer Science (because it actually stands for Gallina which is Latin for chicken, the secret ingredient in G-Fuel), but because of the sheer sustenance it provides to all individuals that spend their time in front of a computer. Like any good Computer Science Student Union, they had it ready for purchase.",
-      "status": false,
-      "combination": "Lucky Mug"
-    },
-    {
-      "id": 5,
-      "name": "Ancient Computer Scientist Stone",
-      "description": "A glowing stone that resonates with you. If you listen closely, it whispers 'JavaScript may be a language, but it's certainly not a good one'. Out of curiosity, you listen again, it says: 'Every loop has its break, every tree its root, every function its return'. It seems... all-knowing like it holds all the truths of Computer Science within it. If you look at the bottom of it, it says 'Property of the Computer Science Student Union'.",
-      "status": false,
-      "combination": null
-    }
-  ],
-  "puzzles": [
-    {
-      "id": 1,
-      "name": "ROM Podiums",
-      "description": "As you stand in the room, you feel its aura. It feels as though there is an otherworldly being in the room with you, speaking through the walls. It whispers to you, and although you don't hear it as sound, you somehow can understand the message... 'It's me, John Computer Science... if you wish to acquire the Ancient Computer Scientist Stone, you must prove yourself worthy. To obtain thee, answer these riddles... six. Each riddle will be about Computer Science and will be a one-word answer. If you can answer all six riddles, and defeat the final main riddle after, you can have the stone. Warning, I have seen many try, and all fail, so good luck to you.",
-      "available_commands": {
-        "inspect artifact 1":  "Ask me to, and repeat I shall. In iterating, consider me your best pal.",
-        "solve artifact 1 riddle":  "loop",
-        "inspect artifact 2":  "Ordered items I store. For me, prepending elements is a chore.",
-        "solve artifact 2 riddle":  "list",
-        "inspect artifact 3":  "I am called and return what is due. Crafted by users, I am homebrew.",
-        "solve artifact 3 riddle":  "function",
-        "inspect artifact 4":  "I slither into every beginner programmer’s course. However, you will also find me among the workforce.",
-        "solve artifact 4 riddle":  "python",
-        "inspect artifact 5":  "How do I define myself? Let me check. How do I define myself? Let me check. Ah, I see—I'm myself!",
-        "solve artifact 5 riddle":  "recursion",
-        "inspect artifact 6":  "From root to branch, I spread so wide, that the farther you go, the harder to find my side.",
-        "solve artifact 6 riddle":  "tree",
-        "inspect main artifact":  "I am a quite complex password. Guess me? You cannot. 4 ordered numbers, I definitely am not.",
-        "solve main artifact riddle":  "1234",
-        "quit": ""
-      },
-      "win_message": "That is correct. You continue to prove you are worthy of the stone.",
-      "lose_message": "Unfortunately, that is an incorrect answer. It seems the stone does not speak to you."
-    },
-    {
-      "id": 2,
-      "name": "Pokemon Battle",
-      "description": "Unfortunately, you realize that you don't have your wallet on you. 'Can anybody spare a few bucks?', you ask. 'Sure, if you help with this Pokemon battle', someone replies. 'All you have to do is win this battle for me. I've been stuck on it for DAYS!' So, here's the situation. I have an Infernape who is fighting a Gyrados. My Infernape, a fire-fighting type, is at 1hp, and the Gyrados, a water-flying type, is at max hp. You need to find the correct move that will one-shot this Gyrados. You have four attacks you can use, and one of them should be the correct one.",
-      "available_commands": {
-        "flamethrower": "Infernape puts its hand together and shoots a large beam of fire towards Gyrados... it deals 5 damage. Gyrados immediately counters with Waterfall, and Infernape passes out",
-        "close combat": "Infernape gets in its fighting stance and begins to punch Gyrados at a ludicrous speed... it deals 5 damage. Gyrados immediately counters with Waterfall, and Infernape passes out",
-        "thunder punch": "Infernape harnesses its electric power into its fist and unleashes a powerful punch right in Gyrados' forehead. Gyrados immediately passes out, and Infernape is victorious.",
-        "earthquake": "Infernape smashes its fist into the ground causing a massive earthquake that makes it all the way to Gyrados... but Gyrados is literally flying and takes no damage. Gyrados immediately counters with Waterfall, and Infernape passes out.",
-        "bag": "Your bag is empty.",
-        "run": "Nice try pal.",
-        "quit": ""
-      },
-      "win_message": "'Yes! Thank you so much. Here's your money, spend it wisely Pokemon Trainer.' You walk to the vending machine, punch in the code G4, and out comes your G Fuel. You now have G Fuel!",
-      "lose_message": "'NO! Please, you've got to try again. I've set you back to the same encounter, you need to win this time.'"
-    },
-    {
-      "id": 3,
-      "name": "Tenjack",
-      "description": "You notice that among the items being gambled on the tables, your Lucky Mug is one of the items in the middle. 'Hey, that's my Lucky Mug!', you say. The gamblers turn and look at you, and slowly hide their cards. 'Ever heard of finders keepers? says one of the gamblers. 'You left your mug here that one time you bought coffee and asked the shop owners to fill it up, but then you ran away because you forgot you had a test next period. As shopowners do, they gave it to us to gamble with. If you want your mug back, you are gonna have to beat me in a game of tenjack. Tenjack is like blackjack, except each player gets 10 cards, and suits don't matter, so there are no repeats. You have to get as close to 21, but if you go over you bust... just so you know, I invented this game, and I'm so good at it that I'll let you play me as many times as you want, and if you can even beat me once, you can get your mug back.'",
-      "available_commands": {
-        "hit":  "Hit! You receive a",
-        "stand":  "You stand on",
-        "quit": ""
-      },
-      "win_message": "Alright, you won fair and square. You can have your mug back.",
-      "lose_message": "'Well, look's like you lose. Nice try though, I'll make sure to put this mug to good use... unless you want a rematch, that is?'"
-    },
-    {
-      "id": 4,
-      "name": "Ddakji",
-      "description": "As the people who just arrived fan out, you realize you are completely alone in the subway station, there are no longer any people here. Except, there is one person, a man with a briefcase sitting on a bench. He looks at you and greets you. 'Hello, would you like to play a game?', he asks. He sees you are hesitant, and says, 'You know you this is just a game right? Like, you are in a text adventure game, this isn't a horror movie. You don't need to be scared. Anyways, if you beat me in this game, you will unlock the ability to travel between St. George station, and Queens Park station as you please. The game is simple, it's Ddakji, the Korean game where you try and flip over your opponent's envelope by throwing your envelope at it. Here's your envelope, try and flip mine over. Adjust your settings before you throw it, otherwise this might not go so well for you. By default, your power is set to low, you are using your right hand, and you are holding the envelope with the opening down.' As he finishes speaking, you see an influx of interesting-looking people enter the subway station. You also notice there are so many interesting things to look at on the walls, ceilings, etc.",
-      "available_commands": {
-        "observe tv": "You look up at the TV which is playing the news; the forecast says there is a high chance of snow tomorrow morning.",
-        "read poster": "You read a poster on the wall, it is an advertisement for a podcast called 'In the Loop'... seems interesting.",
-        "observe athlete": "You see a dude wearing a Blue Jays jersey with 'Paul Quantrill' on the back, fidgetting with a baseball in his right hand. He must be heading to the Blue Jays game.",
-        "eavesdrop": "You overhear two businessmen talking. 'Yes, yes, the profit margins are very bad, I need to contact the JCK and ask for the QWP to get the RFL going.', he says. You have no idea what any of that means.",
-        "observe book": "You look over to your right and see a person sitting on a bench. Everything seems quite normal with them, other than the fact that the book they are reading, is upside down.",
-        "current form": "Your current form of throw:",
-        "set low power": "You adjust your level of power to be low.",
-        "set high power":  "You adjust your level of power to be high.",
-        "set right hand":  "You adjust your envelope to be in your right hand.",
-        "set left hand": "You adjust your envelope to be in your left hand.",
-        "set side up":  "You adjust your envelope to be face up",
-        "set side down": "You adjust your envelope to be face down",
-        "throw": "You throw your envelope at the one on the floor.",
-        "quit": ""
-      },
-      "win_message": "The envelope strikes the other, flipping it over instantly. 'Congratulations, you have won this game. By the power vested in me, by the Toronto Transit Commission, you may now utilize the subways running between St. George and Queens Park Station.'",
-      "lose_message": "Your envelope hits the other, and the one on the floor barely moves. 'It's quite a difficult game, isn't it? The ability to travel between stations is a great asset, however, as they say, you should not spend all your money in one place... which in this case your money is your turn count...'"
-    }
-  ]
-}
+"""CSC111 Project 1: Text Adventure Game - Game Manager
+
+Instructions (READ THIS FIRST!)
+===============================
+
+This Python module contains the code for Project 1. Please consult
+the project handout for instructions and details.
+
+Copyright and Usage Information
+===============================
+
+This file is provided solely for the personal and private use of students
+taking CSC111 at the University of Toronto St. George campus. All forms of
+distribution of this code, whether as given or with any changes, are
+expressly prohibited. For more information on copyright for CSC111 materials,
+please consult our Course Syllabus.
+
+This file is Copyright (c) 2025 CSC111 Teaching Team
+"""
+from __future__ import annotations
+import json
+import copy  #NEW
+from typing import Optional
+from game_entities import Location, Item, Puzzle, Player
+from proj1_event_logger import Event, EventList
+
+
+class AdventureGame:
+    """A text adventure game class storing all location, item and map data.
+
+    Instance Attributes:
+        - current_location_id: The id of the current location that the user is at. By default, they start at position 1.
+        - ongoing: The status of the condition of the game (whether it is ongoing or not)
+        - submitted: Whether the user has submitted their assignment or not (one of the win conditions)
+
+    Representation Invariants:
+        - 1 <= current_location_id <= 9
+    """
+
+    # Private Instance Attributes (do NOT remove these two attributes):
+    #   - _locations: a mapping from location id to Location object.
+    #                       This represents all the locations in the game.
+    #   - _items: a list of Item objects, representing all items in the game.
+    #   - _puzzles: a mapping from puzzle id to Puzzle object.
+    #                       This represents all the puzzles in the game.
+    _locations: dict[int, Location]
+    _items: list[Item]
+    _puzzles: dict[int, Puzzle]
+    current_location_id: int
+    ongoing: bool
+
+    def __init__(self, game_data_file: str, initial_location_id: int) -> None:
+        """
+        Initialize a new text adventure game, based on the data in the given file, setting starting location of game
+        at the given initial location ID.
+        (note: you are allowed to modify the format of the file as you see fit)
+
+        Preconditions:
+        - game_data_file is the filename of a valid game data JSON file
+
+        >>> game = AdventureGame('game_data.json', 1)
+        >>> game.current_location_id
+        1
+        >>> game.ongoing
+        True
+        """
+
+        self._locations, self._items, self._puzzles = self._load_game_data(game_data_file)
+
+        self.current_location_id = initial_location_id
+        self.ongoing = True
+        self.submitted = False
+
+    @staticmethod
+    def _load_game_data(filename: str) -> tuple[dict[int, Location], list[Item], dict[int, Puzzle]]:
+        """Load locations and items from a JSON file with the given filename and return a tuple consisting of (1) a
+        dictionary of locations mapping each game location's ID to a Location object, (2) a list of all Item objects,
+        and (3) a dictionary of puzzles mapping each game puzzle's ID to a Puzzle object
+
+        >>> locations, items, puzzles = AdventureGame._load_game_data('game_data.json')
+        >>> len(locations)
+        9
+        >>> len(items)
+        5
+        >>> len(puzzles)
+        4
+        """
+
+        with open(filename, 'r', encoding='utf-8') as f:  # Got this encoding thing from ChatGPT, as it fixed our
+            # JSON file encoding issue that we could not figure out how to fix ourselves.
+
+            data = json.load(f)  # This loads all the data from the JSON file
+
+        locations = {}
+        for loc_data in data['locations']:  # Go through each element associated with the 'locations' key in the file
+            location_obj = Location(loc_data['id'], loc_data['name'], loc_data['brief_description'],
+                                    loc_data['long_description'], loc_data['available_commands'], loc_data['items'])
+            locations[loc_data['id']] = location_obj
+
+        items = []
+        for item_data in data['items']:  # Go through each element associated with the 'items' key in the file
+            item_obj = Item(item_data['id'], item_data['name'], item_data['description'], item_data['status'],
+                            item_data['combination'])
+            items.append(item_obj)
+
+        puzzles = {}
+        for puzzle_data in data['puzzles']:  # Go through each element associated with the 'puzzles' key in the file
+            puzzle_obj = Puzzle(puzzle_data['id'], puzzle_data['name'], puzzle_data['description'],
+                                puzzle_data['available_commands'], puzzle_data['win_message'],
+                                puzzle_data['lose_message'])
+            puzzles[puzzle_data['id']] = puzzle_obj
+
+        return locations, items, puzzles
+
+    def get_location(self, loc_id: Optional[int] = None) -> Location:
+        """Return Location object associated with the provided location ID.
+        If no ID is provided, return the Location object associated with the current location.
+
+        >>> game = AdventureGame('game_data.json', 1)
+        >>> game.get_location()
+        Location(id=1, name='John P. Robarts Research Library, Floor 14', brief_description='After a long elevator ride, you arrive on the 14th floor of Robarts. The floor is filled with students cramming for their midterms, and there is not even one single seat available.', long_description='After a long journey, you finally reach the 14th floor. When you open the door, the overwhelming sound of silence hits you. It is perfectly silent, not even one person talking. Every seat is taken, and everyone is working on their tablets and laptops, clearly studying for their midterms. You gaze outside and you see the whole of the UofT campus, you know all your items are out there, ready for you to find. You walk around on your tiptoes, so as to not make even a single sound. As you walk around, you see many outlets both on the tables, as well as on the walls, where many students are charging their devices to keep their grind going.', available_commands={'go south': 4, 'go east': 2, 'charge laptop': 1}, items=[''], visited=False)
+
+        >>> game.get_location(2)
+        Location(id=2, name='St. George Subway Station', brief_description='You enter St. George Subway Subway Station, and arrive on the Line 1 platform. The northbound subway car just left, but you see the southbound subway car arriving now, with its doors opening. You could get on, should you have access to it.', long_description="You arrive at the St. George Subway Station. You enter from the St. George Street entrance and arrive on the Line 1 platform. You see lots of people getting off the subway car, some heading up the stairs, some heading down the stairs onto the Line 2 platform. The floors are surprisingly clean, and you smell a strong scent of lavender. 'How delicious', you think to yourself. You see the Southbound subway car arrive on the platform, and its doors are open. You could get on, should you have access to use it.", available_commands={'go south': 5, 'go west': 1, 'go east': 3, 'take subway': 9, 'play ddakji': 2}, items=[''], visited=False)
+        """
+
+        if loc_id is None:
+            return self._locations[self.current_location_id]
+        else:
+            return self._locations[loc_id]
+
+    def combine(self, player: Player) -> None:
+        """Combine items if possible, printing a result message.
+
+        >>> player = Player('user')
+        >>> game = AdventureGame('game_data.json', 1)
+        >>> game.combine(player)
+        You don't have anything you can combine at the moment.
+        """
+        if not (self._items[2].status and self._items[3].status):
+            if 3 in player.items and 4 in player.items:
+                print("You put your G-Fuel in one hand, and your Lucky Mug in the other, "
+                      "and you close your eyes and slam them together. When you open your eyes, "
+                      "you have a mug full of G-Fuel!")
+                player.items[3].status = True
+                player.items[4].status = True
+            elif 3 in player.items:
+                print("Something to put in your Lucky Mug would be really great right now.")
+            elif 4 in player.items:
+                print("Something to put this G-Fuel in would be really great right now.")
+            else:
+                print("You don't have anything you can combine at the moment.")
+        else:
+            print("You have already combined the Lucky Mug with G-Fuel.")
+
+    def win(self) -> None:
+        """Determine if the player has won, prompting them for submission."""
+        self.ongoing = False
+        print("You have every single item you need. It is 1 minute before the deadline, do you submit "
+              "your assignment? (yes, no)")
+
+        choice = input("\nEnter action: ").lower().strip()
+        while choice not in ["yes", "no"]:
+            print("That was an invalid option; try again.")
+            choice = input("\nEnter action: ").lower().strip()
+
+        print("========")
+        print("You decided to:", choice)
+
+        if choice == "yes":
+            print("You submit your assignment in time. Congratulations, you won the game with",
+                  player.remaining_turns, "turns left!")
+        elif choice == "no":
+            print("You decide not to submit your assignment... you fail it. Congratulations, you lost the game "
+                  "with", player.remaining_turns, "turns left! "
+                                                  "Your score was: ",
+                  sum([item.status for item in self._items if item.status is True]), "out of 5")
+
+    def save_game_state(self, player: Player, game_log: EventList) -> dict:
+        """Return a snapshot (as a dictionary) of all mutable game state.
+
+         >>> player = Player('user')
+        >>> game = AdventureGame('game_data.json', 1)
+        >>> game_log = []
+        >>> snapshot = game.save_game_state(player, game_log)
+        >>> isinstance(snapshot, dict)  # Check if the result is a dictionary
+        True
+        """
+        return {
+            'current_location_id': self.current_location_id,
+            'ongoing': self.ongoing,
+            'submitted': self.submitted,
+            '_locations': copy.deepcopy(self._locations),
+            '_items': copy.deepcopy(self._items),
+            '_puzzles': copy.deepcopy(self._puzzles),
+            'player_items': copy.deepcopy(player.items),
+            'player_remaining_turns': player.remaining_turns,
+            'game_log': copy.deepcopy(game_log)
+        }
+
+    def load_game_state(self, snapshot: dict, player: Player, game_log: EventList) -> None:
+        """Restore the game state from the given snapshot dictionary.
+
+        ChatGPT made this doctest.
+        >>> # Create a game with initial location 1.
+        >>> game = AdventureGame('game_data.json', 1)
+        >>> player = Player('user')
+        >>> game_log = EventList()
+        >>> # Set player's remaining turns to a known value for testing.
+        >>> player.remaining_turns = 10
+        >>> # Save the current state.
+        >>> snapshot = game.save_game_state(player, game_log)
+        >>> # Change some of the game state.
+        >>> game.current_location_id = 5
+        >>> player.remaining_turns = 3
+        >>> game.ongoing = False
+        >>> # Check that the state has changed.
+        >>> game.current_location_id
+        5
+        >>> player.remaining_turns
+        3
+        >>> game.ongoing
+        False
+        >>> # Now restore the state from the snapshot.
+        >>> game.load_game_state(snapshot, player, game_log)
+        >>> game.current_location_id
+        1
+        >>> player.remaining_turns
+        10
+        >>> game.ongoing
+        True
+        """
+        self.current_location_id = snapshot['current_location_id']
+        self.ongoing = snapshot['ongoing']
+        self.submitted = snapshot['submitted']
+        self._locations = snapshot['_locations']
+        self._items = snapshot['_items']
+        self._puzzles = snapshot['_puzzles']
+        player.items = snapshot['player_items']
+        player.remaining_turns = snapshot['player_remaining_turns']
+        restored_log = snapshot['game_log']
+        game_log.first = restored_log.first
+        game_log.last = restored_log.last
+
+
+if __name__ == "__main__":
+    # import python_ta
+    # python_ta.check_all(config={
+    #     'max-line-length': 120,
+    #     'disable': ['R1705', 'E9998', 'E9999']
+    # })
+
+    game_log = EventList()
+    game = AdventureGame('game_data.json', 1)  # load data, setting initial location ID to 1
+    player = Player('user')  # initializes the default player object
+
+    menu = ["look", "inventory", "combine", "turns", "score", "undo", "log", "quit"]
+    other_commands = ['charge laptop', 'take subway', 'return stone', 'pickup usb', 'pickup laptop charger']
+    puzzle_commands = ['play ddakji', 'investigate podiums', 'pokemon battle', 'play tenjack']
+
+    choice = None
+    event = None
+
+    ## NEW
+    state_history = [game.save_game_state(player, game_log)]
+
+    while game.ongoing:
+        location = game.get_location()
+        location.conditions(player, game._puzzles)
+
+        #game_log.add_event(event, choice)
+
+        print("You are now at:", location.name)
+        if not location.visited:
+            print(location.long_description)
+            location.visited = True
+        else:
+            print(location.brief_description)
+
+        print("What to do? Choose from: look, inventory, combine, turns, score, undo, log, quit")
+        print("At this location, you can also:")
+        for action in location.available_commands:
+            print("-", action)
+
+        choice = input("\nEnter action: ").lower().strip()
+        while choice not in location.available_commands and choice not in menu:
+            print("That was an invalid option; try again.")
+            choice = input("\nEnter action: ").lower().strip()
+
+        print("========")
+        print("You decided to:", choice)
+
+        # --- NEW EVENT LOGGING ---
+        # Create an event that permanently records the command issued from the current location.
+        new_event = Event(location.id, location.long_description, choice)
+        game_log.add_event(new_event)
+        # ---------------------------
+
+        ## NEW
+        # If the user wants to undo, revert immediately.
+        if choice == 'undo':
+            if len(state_history) > 1:
+                state_history.pop()  # Remove the snapshot for the current state.
+                game.load_game_state(state_history[-1], player, game_log)
+                print("Undid the last move.")
+                continue
+            else:
+                print("No moves to undo.")
+                continue
+
+
+
+        if choice in menu:
+            if choice == "log":
+                game_log.display_events()
+            elif choice == 'look':
+                print(location.long_description)
+                player.remaining_turns -= 1
+            elif choice == 'inventory':
+                print([player.items[item].name for item in player.items])
+                player.remaining_turns -= 1
+            elif choice == 'combine':
+                game.combine(player)
+                player.remaining_turns -= 1
+            elif choice == 'turns':
+                print(player.remaining_turns)
+            elif choice == 'score':
+                print("Your score is:", sum([item.status for item in game._items if item.status is True]), "out of 5")
+            # elif choice == 'undo':
+            #     if len(state_history) > 1:
+            #         # Remove the current state snapshot and load the one from before the last move.
+            #         state_history.pop()  # remove snapshot for the current turn (not yet processed)
+            #         load_game_state(state_history[-1], game, player, game_log)
+            #         print("Undid the last move.")
+            #         continue  # Skip further processing this turn.
+            #     else:
+            #         print("No moves to undo.")
+            #         continue
+
+            #game_log.remove_last_event()
+            # TODO: undo should not log None, and maybe even not undo
+            elif choice == 'quit':
+                quit()
+
+        else:
+            # Handle non-menu actions
+            result = location.available_commands[choice]
+            game.current_location_id = result  # Changes the current location id to the updated one
+
+            if choice in other_commands:
+                if choice == 'charge laptop':
+                    player.items[2].status = True
+                elif choice == 'take subway':
+                    pass
+                elif choice == 'return stone':
+                    player.items[5].status = True
+                    player.items.pop(5)
+                elif choice == 'pickup usb':
+                    player.items[game._items[0].id] = game._items[0]
+                    player.items[1].status = True
+                elif choice == 'pickup laptop charger':
+                    player.items[game._items[1].id] = game._items[1]
+
+            if choice in puzzle_commands:
+                if choice == 'investigate podiums':
+                    game._puzzles[1].rom_podiums(game, player)
+                elif choice == 'pokemon battle':
+                    game._puzzles[2].pokemon_battle(game, player)
+                elif choice == 'play tenjack':
+                    game._puzzles[3].tenjack(game, player)
+                elif choice == 'play ddakji':
+                    game._puzzles[4].ddakji(player)
+
+        ## NEW
+        state_history.append(game.save_game_state(player, game_log))
+
+        #event = Event(location.id, location.long_description, None, None, game_log.last)
+
+        if player.remaining_turns <= 0:
+            print("You ran out of turns. Your score was:",
+                  sum([item.status for item in game._items if item.status is True]), "out of 5")
+            game.ongoing = False
+        if all(item.status is True for item in game._items):  # Check if the user won the game.
+            game.win()
