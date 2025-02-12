@@ -138,7 +138,8 @@ class Item:
 
     id: int
     name: str
-    description: str
+    description: str  # Item descriptions are never actually used in the code but we did create descriptions
+    # so we decided to keep them in even though they did not end up being used anywhere.
     status: bool
 
     def __init__(self, item_id: int, name: str, description: str, status: bool) -> None:
@@ -454,7 +455,7 @@ class Player:
     Instance Attributes:
         - name: The name of the user playing the game.
         - items: A dictionary mapping item object ids to items that the user has obtained throughout their playthrough.
-        - remaining_turns: The amount of remianing turns the player has in their playthrough.
+        - remaining_turns: The amount of remaining turns the player has in their playthrough.
 
     Representation Invariants:
         - len(name) > 0
