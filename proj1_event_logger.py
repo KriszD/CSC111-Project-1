@@ -122,10 +122,12 @@ class EventList:
         Location: 1, Command: go north
         Location: 2, Command: go south
         """
+        print("---------------------------------")
         curr = self.first
         while curr:
             print(f"Location: {curr.id_num}, Command: {curr.next_command}")
             curr = curr.next
+        print("---------------------------------")
 
     def is_empty(self) -> bool:
         """Return whether this event list is empty.

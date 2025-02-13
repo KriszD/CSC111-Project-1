@@ -24,11 +24,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 import random
 
-from typing import TYPE_CHECKING  # suggested by ChatGPT
-
-if TYPE_CHECKING:
-    from assignments.project1.adventure import AdventureGame
-
 
 @dataclass
 class Location:
@@ -95,6 +90,8 @@ class Location:
             """Remove a command if present."""
             self.available_commands.pop(command, None)
 
+        # Dictionary mapping location IDs to conditions that dynamically add/remove available commands
+        # based on player statuses (items, puzzles, etc.).
         location_conditions = {
             1: lambda: add_command("charge laptop", 1) if has_item(2) and not player.items[2].status
             else remove_command("charge laptop"),
@@ -158,6 +155,39 @@ class Item:
 
 
 @dataclass
+class Player:
+    """A Player in our text adventure game world.
+
+    Instance Attributes:
+        - name: The name of the user playing the game.
+        - items: A dictionary mapping item object ids to items that the user has obtained throughout their playthrough.
+        - remaining_turns: The amount of remaining turns the player has in their playthrough.
+
+    Representation Invariants:
+        - len(name) > 0
+        - remaining_turns > 0
+    """
+
+    name: str
+    items: dict[int: Item]
+    remaining_turns: int
+
+    def __init__(self, name: str) -> None:
+        """Initialize a new player.
+
+        >>> player = Player("Bob")
+        >>> player.name
+        'Bob'
+        >>> player.remaining_turns
+        50
+        """
+        self.name = name  # Never became used, was kept in case further modifications were made for
+        # leaderboards, save files, etc.
+        self.items = {}
+        self.remaining_turns = 50  # Default turn max
+
+
+@dataclass
 class Puzzle:
     """A Puzzle in our text adventure game world.
 
@@ -192,13 +222,14 @@ class Puzzle:
         >>> puzzle.won
         False
         """
+
         self.id = puzzle_id
         self.information = information
         self.available_commands = available_commands
         self.messages = messages
         self.won = False
 
-    def rom_podiums(self, game: AdventureGame, player: Player) -> None:
+    def rom_podiums(self, player: Player) -> None:
         """Initializes and plays through the Rom Podiums Puzzle, a complex puzzle about CS riddles."""
 
         main_artifact_commands = {
@@ -232,13 +263,12 @@ class Puzzle:
             if choice.startswith("inspect artifact") or choice.startswith("solve artifact"):
                 win_count = self.handle_artifact(choice, player, win_count, main_artifact_commands)
             elif choice.startswith("inspect main artifact") or choice.startswith("solve main artifact"):
-                self.handle_main_artifact(choice, player, game)
+                self.handle_main_artifact(choice)
 
     def handle_artifact(self, choice: str, player: Player, win_count: int, main_artifact_commands: dict) -> int:
         """Handles artifact interactions, including inspecting and solving."""
 
         if choice.startswith("inspect artifact"):
-            artifact_number = choice.split()[2]
             print(f"Inspecting Artifact: {self.available_commands[choice]}")
 
         elif choice.startswith("solve artifact"):
@@ -264,7 +294,7 @@ class Puzzle:
 
         return win_count
 
-    def handle_main_artifact(self, choice: str, player: Player, game: AdventureGame) -> None:
+    def handle_main_artifact(self, choice: str) -> None:
         """Handles interactions with the main artifact."""
 
         if choice == "inspect main artifact":
@@ -274,13 +304,12 @@ class Puzzle:
             answer = input("Enter answer for the main artifact riddle: ").lower().strip()
             if answer == self.available_commands["solve main artifact riddle"]:
                 print("'That is... correct! You may now have the Ancient Computer Scientist Stone.'")
-                player.items[game.items[4].id] = game.items[4]  # Give the user the Stone
                 self.won = True
                 self.available_commands.pop("solve main artifact riddle", None)
             else:
                 print(self.messages[1])
 
-    def pokemon_battle(self, game: AdventureGame, player: Player) -> None:
+    def pokemon_battle(self, player: Player) -> None:
         """Initializes and plays through the Pokemon Battle Puzzle, a simple puzzle."""
         print(self.information[1])
         while not self.won:
@@ -321,9 +350,8 @@ class Puzzle:
                 print(self.messages[1])
 
         print(self.messages[0])
-        player.items[game.items[3].id] = game.items[3]  # Give the user the G-Fuel
 
-    def tenjack(self, game: AdventureGame, player: Player) -> None:
+    def tenjack(self, player: Player) -> None:
         """Initializes and plays through the Tenjack Puzzle."""
         cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         player_hand = []
@@ -355,7 +383,6 @@ class Puzzle:
                 player.remaining_turns -= 1
                 print("Hello TA. You have used the cheatcode to bypass the Tenjack Puzzle. Congrats!")
                 print(self.messages[0])
-                player.items[game.items[2].id] = game.items[2]
                 self.won = True
                 return
 
@@ -378,7 +405,6 @@ class Puzzle:
         player.remaining_turns -= 1
         if sum(player_hand) > dealer_hand:
             print(self.messages[0])
-            player.items[game.items[2].id] = game.items[2]
             self.won = True
         elif sum(player_hand) < dealer_hand:
             print(self.messages[1])
@@ -446,38 +472,6 @@ class Puzzle:
         else:
             player.remaining_turns -= 1
             print(self.messages[1])
-
-
-@dataclass
-class Player:
-    """A Player in our text adventure game world.
-
-    Instance Attributes:
-        - name: The name of the user playing the game.
-        - items: A dictionary mapping item object ids to items that the user has obtained throughout their playthrough.
-        - remaining_turns: The amount of remaining turns the player has in their playthrough.
-
-    Representation Invariants:
-        - len(name) > 0
-        - remaining_turns > 0
-    """
-
-    name: str
-    items: dict[int: Item]
-    remaining_turns: int
-
-    def __init__(self, name: str) -> None:
-        """Initialize a new player.
-
-        >>> player = Player("Bob")
-        >>> player.name
-        'Bob'
-        >>> player.remaining_turns
-        50
-        """
-        self.name = name
-        self.items = {}
-        self.remaining_turns = 50
 
 
 if __name__ == "__main__":

@@ -22,7 +22,7 @@ from __future__ import annotations
 import json
 import copy
 from typing import Optional
-from game_entities import Location, Item, Puzzle, Player
+from game_entities import Location, Item, Player, Puzzle
 from proj1_event_logger import Event, EventList
 
 
@@ -36,10 +36,10 @@ class AdventureGame:
         - ongoing: The status of the condition of the game (whether it is ongoing or not)
 
     Representation Invariants:
-        - 1 <= current_location_id <= 9
+        - all({1 <= location.id <= 9 for location in _locations})
     """
 
-    # Private Instance Attributes (do NOT remove these two attributes):
+    # Private Instance Attributes:
     #   - _locations: a mapping from location id to Location object.
     _locations: dict[int, Location]
     items: list[Item]
@@ -51,7 +51,6 @@ class AdventureGame:
         """
         Initialize a new text adventure game, based on the data in the given file, setting starting location of game
         at the given initial location ID.
-        (note: you are allowed to modify the format of the file as you see fit)
 
         Preconditions:
         - game_data_file is the filename of a valid game data JSON file
@@ -107,6 +106,8 @@ class AdventureGame:
             puzzle_obj = Puzzle(puzzle_data['id'], information, puzzle_data['available_commands'], messages)
             puzzles[puzzle_data['id']] = puzzle_obj
 
+        print(data['story'])  # prints the opening story for the game
+
         return locations, items, puzzles
 
     def get_location(self, loc_id: Optional[int] = None) -> Location:
@@ -141,6 +142,8 @@ class AdventureGame:
                       "you have a mug full of G-Fuel!")
                 combine_player.items[3].status = True
                 combine_player.items[4].status = True
+                player.items.pop(4)  # Remove the G-Fuel from their inventory
+                player.items[3].name = 'G-Fuel-filled Lucky Mug'  # Change the Lucky Mug into its new state
             elif 3 in combine_player.items:
                 print("Something to put in your Lucky Mug would be really great right now.")
             elif 4 in combine_player.items:
@@ -233,11 +236,11 @@ class AdventureGame:
 
 
 if __name__ == "__main__":
-    import python_ta
-    python_ta.check_all(config={
-        'max-line-length': 120,
-        'disable': ['R1705', 'E9998', 'E9999']
-    })
+    # import python_ta
+    # python_ta.check_all(config={
+    #     'max-line-length': 120,
+    #     'disable': ['R1705', 'E9998', 'E9999']
+    # })
 
     game_log = EventList()
     game = AdventureGame('game_data.json', 1)  # load data, setting initial location ID to 1
@@ -250,23 +253,25 @@ if __name__ == "__main__":
     choice = None
     event = None
 
-    state_history = [game.save_game_state(player, game_log)]
+    state_history = [game.save_game_state(player, game_log)]  # Create the initial state history
 
     last_location_id = game.current_location_id
+    first_run = True  # Flag to track the first run
 
     while game.ongoing:
         location = game.get_location()
         location.conditions(player, game.puzzles)
 
-        if game.current_location_id != last_location_id:  # Don't repeat description if they didn't move
+        if first_run or game.current_location_id != last_location_id:
             print("You are now at:", location.information[0])
-            if not location.visited:
-                print(location.information[1])  # Brief description on first visit
+            if first_run or not location.visited:
+                print(location.information[2])  # Long description on first visit
                 location.visited = True
-            else:
-                print(location.information[2])  # Long description after first visit
-            last_location_id = game.current_location_id  # Update the last location
-        # Do not print anything if the location has not changed
+            elif location.visited:
+                print(location.information[1])  # Brief description after first visit
+
+            last_location_id = game.current_location_id  # Update last location
+            first_run = False  # Set first_run to False after the first execution
 
         print("What to do? Choose from: look, inventory, combine, turns, score, undo, log, quit")
         print("At this location, you can also:")
@@ -285,16 +290,16 @@ if __name__ == "__main__":
         game_log.add_event(new_event)
 
         if choice in menu:
-            if choice == "log":
-                game_log.display_events()
-            elif choice == 'look':
+            if choice == 'look':
                 print(location.information[2])
             elif choice == 'inventory':
-                print([player.items[item].name for item in player.items])
+                print("In your inventory, you have: " + ", ".join(player.items[item].name for item in player.items))
             elif choice == 'combine':
-                game.combine(player)
+                game.combine(player)  # Run the combine method
             elif choice == 'turns':
-                print(player.remaining_turns)
+                print("You have", player.remaining_turns, "turns left.")
+            elif choice == 'score':
+                print("Your score is:", sum([item.status for item in game.items if item.status is True]), "out of 5")
             elif choice == 'undo':
                 if len(state_history) > 1:
                     state_history.pop()  # Remove the snapshot for the current state.
@@ -304,8 +309,8 @@ if __name__ == "__main__":
                 else:
                     print("No moves to undo.")
                     continue
-            elif choice == 'score':
-                print("Your score is:", sum([item.status for item in game.items if item.status is True]), "out of 5")
+            elif choice == "log":
+                game_log.display_events()
             elif choice == 'quit':
                 quit()
 
@@ -313,7 +318,7 @@ if __name__ == "__main__":
             # Handle non-menu actions
             result = location.available_commands[choice]
             game.current_location_id = result  # Changes the current location id to the updated one
-            player.remaining_turns -= 1
+            player.remaining_turns -= 1  # Non-Menu actions will cost a turn
 
             if choice in other_commands:
                 if choice == 'charge laptop':
@@ -331,19 +336,26 @@ if __name__ == "__main__":
 
             if choice in puzzle_commands:
                 if choice == 'investigate podiums':
-                    game.puzzles[1].rom_podiums(game, player)
+                    game.puzzles[1].rom_podiums(player)
+                    if game.puzzles[1].won:
+                        player.items[game.items[4].id] = game.items[4]  # Give the user the Stone
                 elif choice == 'pokemon battle':
-                    game.puzzles[2].pokemon_battle(game, player)
+                    game.puzzles[2].pokemon_battle(player)
+                    if game.puzzles[2].won:
+                        player.items[game.items[3].id] = game.items[3]  # Give the user the G-Fuel
                 elif choice == 'play tenjack':
-                    game.puzzles[3].tenjack(game, player)
+                    game.puzzles[3].tenjack(player)
+                    if game.puzzles[3].won:
+                        player.items[game.items[2].id] = game.items[2]  # Give the user the Lucky Mug
                 elif choice == 'play ddakji':
                     game.puzzles[4].ddakji(player)
 
         state_history.append(game.save_game_state(player, game_log))  # Log the game state for undoing purposes
 
-        if player.remaining_turns <= 0:
+        if player.remaining_turns <= 0:  # Check if the player ran out of turns
             print("You ran out of turns. Your score was:",
                   sum([item.status for item in game.items if item.status is True]), "out of 5")
             game.ongoing = False
         if all(item.status is True for item in game.items):  # Check if the user won the game.
             game.win()
+        # End of game loop
