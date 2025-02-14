@@ -183,7 +183,8 @@ class Player:
         self.name = name  # Never became used, was kept in case further modifications were made for
         # leaderboards, save files, etc.
         self.items = {}
-        self.remaining_turns = 50  # Default turn max
+        self.remaining_turns = 40  # Default turn max, shortest path to win takes 25 turns. Most players who tested
+        # the game took around 30+, so 40 was fitting.
 
 
 @dataclass

@@ -129,7 +129,7 @@ def test_win_walkthrough() -> None:
                        "solve artifact 3 riddle", "function", "solve artifact 4 riddle", "python",
                        "solve artifact 5 riddle", "recursion", "solve artifact 6 riddle", "tree",
                        "solve main artifact riddle", "1234", "go west", "go west", "charge laptop", "go south",
-                       "return stone", "combine", "yes"]
+                       "return stone", "inventory", "combine", "yes"]
     expected_log = [1, 4, 4, 7, 7, 8, 8, 5, 5, 2, 3, 3, 2, 1, 1, 4, 4]
     sim = AdventureGameSimulation('game_data.json', 1, win_walkthrough)
     assert expected_log == sim.get_id_log()
