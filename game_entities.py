@@ -135,7 +135,7 @@ class Item:
 
     id: int
     name: str
-    description: str  # Item descriptions are never actually used in the code but we did create descriptions
+    description: str  # Item descriptions are never actually used in the code, but we did create descriptions
     # so we decided to keep them in even though they did not end up being used anywhere.
     status: bool
 
@@ -310,7 +310,7 @@ class Puzzle:
                 print(self.messages[1])
 
     def pokemon_battle(self, player: Player) -> None:
-        """Initializes and plays through the Pokemon Battle Puzzle, a simple puzzle."""
+        """Initializes and plays through the Pokémon Battle Puzzle, a simple puzzle."""
         print(self.information[1])
         while not self.won:
             print("Your options are:")
@@ -379,8 +379,8 @@ class Puzzle:
 
             choice = input("\nEnter action: ").lower().strip()
 
-            if choice == "cheatcode":  # Since this game has randomness, add a cheatcode so it can be won with 1 go
-                player.remaining_turns -= 1
+            if choice == "cheatcode":  # Since this game has randomness, add a cheatcode, so it can be won with 1 go
+                player.remaining_turns -= 2  # Subtract 2 turns since you cheated :(
                 print("Hello TA. You have used the cheatcode to bypass the Tenjack Puzzle. Congrats!")
                 print(self.messages[0])
                 self.won = True
@@ -402,7 +402,7 @@ class Puzzle:
 
         dealer_hand = random.randint(15, 21)
         print('The dealer has a', dealer_hand)
-        player.remaining_turns -= 1
+        player.remaining_turns -= 1  # Subtract 1 turn no matter what the outcome
         if sum(player_hand) > dealer_hand:
             print(self.messages[0])
             self.won = True

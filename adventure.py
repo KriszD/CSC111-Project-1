@@ -141,7 +141,9 @@ class AdventureGame:
                       "and you close your eyes and slam them together. When you open your eyes, "
                       "you have a mug full of G-Fuel!")
                 combine_player.items[3].status = True
+                self.items[2].status = True
                 combine_player.items[4].status = True
+                self.items[3].status = True
                 player.items.pop(4)  # Remove the G-Fuel from their inventory
                 player.items[3].name = 'G-Fuel-filled Lucky Mug'  # Change the Lucky Mug into its new state
             elif 3 in combine_player.items:
@@ -299,9 +301,9 @@ if __name__ == "__main__":
             elif choice == 'turns':
                 print("You have", player.remaining_turns, "turns left.")
             elif choice == 'score':
-                print("Your score is:", sum([item.status for item in game.items if item.status is True]), "out of 5")
+                print("Your score is:", sum([1 for item in game.items if item.status is True]), "out of 5")
             elif choice == 'undo':
-                if len(state_history) > 1:
+                if len(state_history) > 1:  # There must be something to undo
                     state_history.pop()  # Remove the snapshot for the current state.
                     game.load_game_state(state_history[-1], player, game_log)
                     print("Undid the last move.")
@@ -323,14 +325,17 @@ if __name__ == "__main__":
             if choice in other_commands:
                 if choice == 'charge laptop':
                     player.items[2].status = True
+                    game.items[1].status = True
                 elif choice == 'take subway':
                     pass  # The available commands will move them using the TTC
                 elif choice == 'return stone':
                     player.items[5].status = True
+                    game.items[4].status = True
                     player.items.pop(5)
                 elif choice == 'pickup usb':
                     player.items[game.items[0].id] = game.items[0]
                     player.items[1].status = True
+                    game.items[0].status = True
                 elif choice == 'pickup laptop charger':
                     player.items[game.items[1].id] = game.items[1]
 

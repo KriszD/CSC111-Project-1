@@ -51,7 +51,7 @@ class AdventureGameSimulation:
         self._events = EventList()
         self._game = AdventureGame(game_data_file, initial_location_id)
 
-        locations, items, puzzles = self._game._load_game_data(game_data_file)
+        locations, items, puzzles = go eself._game._load_game_data(game_data_file)
 
         # this is only to prevent PythonTA from complaining
         if items:
