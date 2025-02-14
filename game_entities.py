@@ -135,8 +135,7 @@ class Item:
 
     id: int
     name: str
-    description: str  # Item descriptions are never actually used in the code, but we did create descriptions
-    # so we decided to keep them in even though they did not end up being used anywhere.
+    description: str
     status: bool
 
     def __init__(self, item_id: int, name: str, description: str, status: bool) -> None:
@@ -256,7 +255,14 @@ class Puzzle:
                 print("That was an invalid option; try again.")
                 choice = input("\nEnter action: ").lower().strip()
 
-            if choice == 'quit':
+            if choice == 'exit puzzle':
+                return
+
+            if choice == "cheatcode":  # Since this game has randomness, add a cheatcode, so it can be won with 1 go
+                player.remaining_turns -= 2  # Subtract 2 turns since you cheated :(
+                print("Hello TA. You have used the cheatcode to bypass the Tenjack Puzzle. Congrats!")
+                print(self.messages[0])
+                self.won = True
                 return
 
             # Delegate command handling
@@ -322,7 +328,7 @@ class Puzzle:
                 print("That was an invalid option; try again.")
                 choice = input("\nEnter action: ").lower().strip()
 
-            if choice == 'quit':
+            if choice == 'exit puzzle':
                 return
 
             if choice == "flamethrower":
@@ -343,8 +349,10 @@ class Puzzle:
                 return
             elif choice == "bag":
                 print(self.available_commands["bag"])
+                continue
             elif choice == "run":
                 print(self.available_commands["run"])
+                continue
 
             if not self.won:
                 print(self.messages[1])
@@ -390,7 +398,7 @@ class Puzzle:
                 print("That was an invalid option; try again.")
                 choice = input("\nEnter action: ").lower().strip()
 
-            if choice == 'quit':
+            if choice == 'exit puzzle':
                 return
 
             if choice == 'hit':
@@ -432,7 +440,7 @@ class Puzzle:
                 print("That was an invalid option; try again.")
                 choice = input("\nEnter action: ").lower().strip()
 
-            if choice == 'quit':
+            if choice == 'exit puzzle':
                 return
 
             # Handle choice
@@ -443,13 +451,12 @@ class Puzzle:
 
         if choice == 'current form':
             print(self.available_commands[choice], [state['power'], state['hand'], state['side']])
-        else:  # Makes the printing easier
-            print(self.available_commands[choice])
-            if choice.startswith("set "):
-                self.update_ddakji_state(choice, state)
 
-            elif choice == "throw":
-                self.evaluate_throw(player, state)
+        elif choice.startswith("set "):
+            self.update_ddakji_state(choice, state)
+
+        elif choice == "throw":
+            self.evaluate_throw(player, state)
 
     def update_ddakji_state(self, choice: str, state: dict) -> None:
         """Updates the Ddakji game state based on user input."""
@@ -470,7 +477,7 @@ class Puzzle:
             print(self.available_commands["throw"], self.messages[0])
         else:
             player.remaining_turns -= 1
-            print(self.messages[1])
+            print(self.available_commands["throw"], self.messages[1])
 
 
 if __name__ == "__main__":

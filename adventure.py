@@ -150,7 +150,11 @@ class AdventureGame:
                 combine_player.items[4].status = True
                 self.items[3].status = True
                 player.items.pop(4)  # Remove the G-Fuel from their inventory
-                player.items[3].name = 'G-Fuel-filled Lucky Mug'  # Change the Lucky Mug into its new state
+
+                # Change the Lucky Mug into its new state, updating its name and description.
+                player.items[3].name = 'G-Fuel-Filled Lucky Mug'
+                player.items[3].description = 'G-Fuel-Filled Lucky Mug! Oh yeah!'
+
             elif 3 in combine_player.items:
                 print("Something to put in your Lucky Mug would be really great right now.")
             elif 4 in combine_player.items:
@@ -182,6 +186,40 @@ class AdventureGame:
                   "with", player.remaining_turns, "turns left! "
                                                   "Your score was: ",
                   sum([item.status for item in self.items if item.status is True]), "out of 5")
+
+    def inventory(self, inventory_player: Player) -> None:
+        """Allows the user to interact with their inventory."""
+        if len(player.items) > 0:
+            print("In your inventory, you have: " + ", ".join(player.items[item].name for item in player.items))
+        else:
+            print("You have no items in your inventory.")
+            return
+        inventory_menu = ["combine", "description", "exit inventory"]
+        print("Choose from: combine, description, exit inventory")
+
+        choice1 = input("\nEnter action: ").lower().strip()
+
+        while choice1 not in inventory_menu:
+            print("That was an invalid option; try again.")
+            choice1 = input("\nEnter action: ").lower().strip()
+
+        if choice1 == 'combine':
+            game.combine(inventory_player)  # Run the combine method
+
+        elif choice1 == 'description':
+            # Create a mapping of item names to descriptions
+            item_info = {item.name.lower(): item.description for item in inventory_player.items.values()}
+
+            choice2 = input("Name of the item you would like a description of: ").lower().strip()
+
+            if choice2 not in item_info:
+                print("That was an invalid option")
+                return
+
+            print(item_info[choice2])
+
+        elif choice == 'exit inventory':
+            return
 
     def save_game_state(self, save_player: Player, save_game_log: EventList) -> dict:
         """Return a snapshot (as a dictionary) of all mutable game state.
@@ -253,7 +291,7 @@ if __name__ == "__main__":
     game = AdventureGame('game_data.json', 1)  # load data, setting initial location ID to 1
     player = Player('user')  # initializes the default player object
 
-    menu = ["look", "inventory", "combine", "turns", "score", "undo", "log", "quit"]
+    menu = ["look", "inventory", "turns", "score", "undo", "log", "quit"]
     other_commands = ['charge laptop', 'take subway', 'return stone', 'pickup usb', 'pickup laptop charger']
     puzzle_commands = ['play ddakji', 'investigate podiums', 'pokemon battle', 'play tenjack']
 
@@ -283,7 +321,7 @@ if __name__ == "__main__":
             last_location_id = game.current_location_id  # Update last location
             first_run = False  # Set first_run to False after the first execution
 
-        print("What to do? Choose from: look, inventory, combine, turns, score, undo, log, quit")
+        print("What to do? Choose from: look, inventory, turns, score, undo, log, quit")
         print("At this location, you can also:")
         for action in location.available_commands:
             print("-", action)
@@ -303,9 +341,7 @@ if __name__ == "__main__":
             if choice == 'look':
                 print(location.information[2])
             elif choice == 'inventory':
-                print("In your inventory, you have: " + ", ".join(player.items[item].name for item in player.items))
-            elif choice == 'combine':
-                game.combine(player)  # Run the combine method
+                game.inventory(player)
             elif choice == 'turns':
                 print("You have", player.remaining_turns, "turns left.")
             elif choice == 'score':

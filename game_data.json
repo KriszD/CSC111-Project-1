@@ -138,7 +138,7 @@
     },
     {
       "id": 4,
-      "name": "G Fuel",
+      "name": "G-Fuel",
       "description": "The ultimate drink for any gamer/Computer Science student, not because the G stands for Computer Science (because it actually stands for Gallina which is Latin for chicken, the secret ingredient in G-Fuel), but because of the sheer sustenance it provides to all individuals that spend their time in front of a computer. Like any good Computer Science Student Union, they had it ready for purchase.",
       "status": false
     },
@@ -169,7 +169,7 @@
         "solve artifact 6 riddle":  "tree",
         "inspect main artifact":  "I am a quite complex password. Guess me? You cannot. 4 ordered numbers, I definitely am not.",
         "solve main artifact riddle":  "1234",
-        "quit": ""
+        "exit puzzle": ""
       },
       "win_message": "That is correct. You continue to prove you are worthy of the stone.",
       "lose_message": "Unfortunately, that is an incorrect answer. It seems the stone does not speak to you."
@@ -185,7 +185,7 @@
         "earthquake": "Infernape smashes its fist into the ground causing a massive earthquake that makes it all the way to Gyrados... but Gyrados is literally flying and takes no damage. Gyrados immediately counters with Waterfall, and Infernape passes out.",
         "bag": "Your bag is empty.",
         "run": "Nice try pal.",
-        "quit": ""
+        "exit puzzle": ""
       },
       "win_message": "'Yes! Thank you so much. Here's your money, spend it wisely Pokemon Trainer.' You walk to the vending machine, punch in the code G4, and out comes your G Fuel. You now have G Fuel!",
       "lose_message": "'NO! Please, you've got to try again. I've set you back to the same encounter, you need to win this time.'"
@@ -197,7 +197,7 @@
       "available_commands": {
         "hit":  "Hit! You receive a",
         "stand":  "You stand on",
-        "quit": ""
+        "exit puzzle": ""
       },
       "win_message": "Alright, you won fair and square. You can have your mug back.",
       "lose_message": "'Well, look's like you lose. Nice try though, I'll make sure to put this mug to good use... unless you want a rematch, that is?'"
