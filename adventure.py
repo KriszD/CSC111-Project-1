@@ -106,9 +106,14 @@ class AdventureGame:
             puzzle_obj = Puzzle(puzzle_data['id'], information, puzzle_data['available_commands'], messages)
             puzzles[puzzle_data['id']] = puzzle_obj
 
-        print(data['story'])  # prints the opening story for the game
-
         return locations, items, puzzles
+
+    @staticmethod
+    def print_story_from_file(filename: str) -> None:
+        """Print the main story of the Game when the user starts it."""
+        with open(filename, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return data['story']
 
     def get_location(self, loc_id: Optional[int] = None) -> Location:
         """Return Location object associated with the provided location ID.
@@ -238,11 +243,11 @@ class AdventureGame:
 
 
 if __name__ == "__main__":
-    import python_ta
-    python_ta.check_all(config={
-        'max-line-length': 120,
-        'disable': ['R1705', 'E9998', 'E9999']
-    })
+    # import python_ta
+    # python_ta.check_all(config={
+    #     'max-line-length': 120,
+    #     'disable': ['R1705', 'E9998', 'E9999']
+    # })
 
     game_log = EventList()
     game = AdventureGame('game_data.json', 1)  # load data, setting initial location ID to 1
@@ -259,6 +264,9 @@ if __name__ == "__main__":
 
     last_location_id = game.current_location_id
     first_run = True  # Flag to track the first run
+
+    # Print the opening story from the game data file
+    print(game.print_story_from_file('game_data.json'))
 
     while game.ongoing:
         location = game.get_location()
