@@ -441,16 +441,15 @@ class Puzzle:
     def handle_ddakji_choice(self, choice: str, player: Player, state: dict) -> None:
         """Handles the player's choice in the Ddakji puzzle."""
 
-        print(self.available_commands[choice])
-
         if choice == 'current form':
             print(self.available_commands[choice], [state['power'], state['hand'], state['side']])
+        else:  # Makes the printing easier
+            print(self.available_commands[choice])
+            if choice.startswith("set "):
+                self.update_ddakji_state(choice, state)
 
-        elif choice.startswith("set "):
-            self.update_ddakji_state(choice, state)
-
-        elif choice == "throw":
-            self.evaluate_throw(player, state)
+            elif choice == "throw":
+                self.evaluate_throw(player, state)
 
     def update_ddakji_state(self, choice: str, state: dict) -> None:
         """Updates the Ddakji game state based on user input."""
